@@ -1,0 +1,19 @@
+{
+    "python.jediEnabled": false,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.linting.flake8Args": [
+        "--max-line-length=79",
+        "--max-doc-length=73",
+        "--max-complexity=10"
+    ],
+    "python.linting.pydocstyleEnabled": true,
+    "python.linting.pydocstyleArgs": [
+        "--convention=pep257",
+        "--add-ignore=D100"
+    ],
+    "python.formatting.provider": "autopep8",
+    "diagnostic.signOffset": 9999999,
+    "r.lsp.diagnostics": false
+}
