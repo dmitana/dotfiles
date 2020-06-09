@@ -423,6 +423,12 @@ awful.keyboard.append_global_keybindings({
         {description = "decrease brightness", group = "hotkeys"}
     ),
     awful.key(
+        {},
+        "Print",
+        function () awful.spawn.with_shell("deepin-screenshot") end,
+        {description = "make screenshot", group = "hotkeys"}
+    ),
+    awful.key(
         { modkey,           },
         "p",
         --function()
@@ -626,3 +632,4 @@ end)
 -- Autostart applications
 awful.spawn.with_shell("compton")
 awful.spawn.with_shell("nm-applet")
+awful.spawn.with_shell("xfce4-clipman")
