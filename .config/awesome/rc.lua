@@ -546,6 +546,16 @@ ruled.client.connect_signal("request::rules", function()
     --     rule       = { class = "Firefox"     },
     --     properties = { screen = 1, tag = "2" }
     -- }
+
+    -- TODO: not working
+    -- Set gnome-keyring to be floating and centered
+    ruled.client.append_rule {
+        rule = { class = "gcr-prompter", name = "Unlock private key" },
+        properties = { floating = false },
+        callback = function (c)
+            awful.placement.centered(c, nil)
+        end
+    }
 end)
 
 -- }}}

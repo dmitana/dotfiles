@@ -122,3 +122,9 @@ if [ -f '/home/denis/Programs/google-cloud-sdk/path.zsh.inc' ]; then . '/home/de
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/denis/Programs/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/denis/Programs/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Enable the keyring for applications run through the terminal, such as SSH
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
