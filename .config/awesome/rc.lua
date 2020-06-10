@@ -51,6 +51,10 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 browser = "google-chrome-stable"
 
+-- Definitions of used programs
+whatsapp = "whatsapp-nativefier-dark"
+slack = "slack"
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -252,8 +256,12 @@ awful.keyboard.append_global_keybindings({
               {description = "lua execute prompt", group = "awesome"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey,           }, "b", function () awful.spawn(browser) end,
+    awful.key({ modkey,           }, "F1", function () awful.spawn(browser) end,
               {description = "open a browser", group = "launcher"}),
+    awful.key({ modkey,           }, "F5", function () awful.spawn(whatsapp) end,
+              {description = "open the whatsapp", group = "launcher"}),
+    awful.key({ modkey,           }, "F6", function () awful.spawn(slack) end,
+              {description = "open the slack", group = "launcher"}),
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
     --awful.key({ modkey }, "p", function() menubar.show() end,
