@@ -109,11 +109,14 @@ au BufNewFile,BufRead *.r
     \ let NERDDefaultAlign="left"
 
 " ===== Plugins configuration =====
+" --- Spelunker plugin ---
+set nospell
+let g:enable_spelunker_vim = 0
+
 " --- CtrlP plugin ---
 if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
-
 
 " --- NERDTree plugin ---
 "map <Leader>n <plug>NERDTreeTabsToggle<CR>
