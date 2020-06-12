@@ -6,7 +6,7 @@ mkdir -p ~/.config/nvim
 mkdir -p ~/.config/coc/ultisnips
 ln -s ~/.nvim/init.vim ~/.config/nvim/init.vim
 ln -s ~/.nvim/coc-settings.json ~/.config/nvim/coc-settings.json
-ln -s ~/.nvim/coc/ultisnips/python.snippets ~/.config/coc/ultisnips/python.snippets
+ln -s ~/.coc/ultisnips/python.snippets ~/.config/coc/ultisnips/python.snippets
 
 # Download and install the appimage, use the output-document option to rename it to nvim
 wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document ~/.config/nvim/nvim.appimage
@@ -26,6 +26,9 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.g
 
 # Install the NeoVim Python module
 pip3 install neovim pynvim
+
+# Install Flake8 extensions
+pip3 install -r ~/.nvim/flake8_extensions.txt
 
 # Install nodejs when necessary (for coc.nvim plugin)
 curl -sL install-node.now.sh/lts | bash -s -- --yes
