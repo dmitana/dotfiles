@@ -40,7 +40,7 @@ $ ln -s ~/.nvim/coc/ultisnips/python.snippets ~/.config/coc/ultisnips/python.sni
 ## Usage in a docker container
 This will work only if a docker container will run under root user (without `-u $(id -u):$(id -g)`)
 
-1. Bind NVIM's configuration files using `-v $HOME/.nvim:/root/.nvim` when `docker run`.
+1. Bind NVIM's configuration files using `-v $HOME/.config/nvim:/root/.nvim -v $HOME/.config/coc:/root/.coc` when `docker run`.
 
 2. Run `install_docker_container.sh`.
 
