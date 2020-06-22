@@ -110,3 +110,18 @@ set laststatus=2
 
 let python_highlight_all=1
 syntax on
+
+" ne_diff shortcuts
+func! DeleteAllTags()
+    :norm ldt|
+    :let selection = @"
+    :let lst = []
+    :call substitute(selection, '>.\{-}<', '\=add(lst, submatch(0))', 'g')
+    :let new = substitute(join(lst, ''), '>\|<', '', 'g')
+    execute "normal! i\<C-r>\<C-r>=new\<CR>\<Esc>"
+    :norm ldt]xF[x
+endfunc
+
+nnoremap @1 f<Bar>dt]xF[x
+nnoremap @2 dt<Bar>f]xF<Bar>x
+nnoremap @3 :call DeleteAllTags()<CR>
