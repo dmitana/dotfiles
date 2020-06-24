@@ -1,0 +1,14 @@
+output VIRTUAL1
+off
+output eDP1
+crtc 1
+mode 1920x1080
+pos 0x0
+rate 60.00
+transform 0.750000,0.000000,0.000000,0.000000,0.750000,0.000000,0.000000,0.000000,1.000000
+output HDMI1
+crtc 0
+mode 1920x1080
+pos 1920x0
+primary
+rate 60.00
