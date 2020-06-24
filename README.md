@@ -1,28 +1,43 @@
-## Getting Started
+## Dotfiles
 
-1. 
+## Getting Started
+1. Add `.dots` directory to the `.gitignore` file.
 ```bash
-$ echo ".cfg" >> .gitignore
+$ echo ".dots" >> .gitignore
 ```
 
-2.
+2. Clone the repo.
 ```bash
-$ git clone --bare <git-repo-url> $HOME/.cfg
+# SSH
+$ git clone --bare git@github.com:dmitana/dotfiles-test.git $HOME/.dots
+
+# HTTPS
+$ git clone --base https://github.com/dmitana/dotfiles-test.git $HOME/.dots
 ```
 
 3. Restart shell or define the alias in the current shell scope.
 ```bash
-$ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+$ alias dots='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 ```
 
-4. Checkout the actual content from the bare repository to your `$HOME`.
+4. Checkout the actual content from the bare repository to your `$HOME`. `$HOME` folder might already have some stock configuration files which would be overwritten by Git (e.g. `.vimrc`, `.zshrc`, ...).
 ```bash
-$ config checkout
+# Back up the files if you care about them
+$ mkdir -p .dots_backup && \
+dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+xargs -I{} mv {} .dots-backup/{}
+
+# Remove them if you don't care
+$ dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+xargs -I{} rm {}
+
+# Checkout the actual content
+$ dots checkout
 ```
 
 5. Set the flag `showUntrackedFiles` to `no` on this specific (local) repository.
 ```bash
-$ config config --local status.showUntrackedFiles no
+$ dots config --local status.showUntrackedFiles no
 ```
 
 ## Optional
