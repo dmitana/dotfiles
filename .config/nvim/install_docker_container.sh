@@ -24,11 +24,26 @@ ln -s ~/.config/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/nvim
 # Install the Vim-plug Plugin Manager
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# Install python3 if doesn't exist
+if ! command -v python3 &> /dev/null
+then
+    apt install -y python3 python3-distutils
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python3 get-pip.py
+    rm get-pip.py
+fi
+
+# Upgrade pip
+pip3 install pip --upgrade
+
 # Install the NeoVim Python module
 pip3 install neovim pynvim
 
 # Install Flake8 extensions
 pip3 install -r ~/.nvim/flake8_extensions.txt
 
-# Install nodejs when necessary (for coc.nvim plugin)
-curl -sL install-node.now.sh/lts | bash -s -- --yes
+# Install nodejs if doesn't exist
+if ! command -v node &> /dev/null
+then
+    curl -sL install-node.now.sh/lts | bash -s -- --yes
+fi
