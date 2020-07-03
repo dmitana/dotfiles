@@ -194,6 +194,10 @@ screen.connect_signal("request::desktop_decoration", function(s)
         }
     }
 
+    -- Create a systray widget
+    s.systray = wibox.widget.systray()
+    s.systray.visible = false
+
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
@@ -210,7 +214,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
-            wibox.widget.systray(),
+            s.systray,
             battery_widget({
                 display_notification = true
             }),
@@ -401,7 +405,7 @@ awful.keyboard.append_global_keybindings({
     }
 })
 
--- Hotkeys
+-- Hotkeys keybindings
 awful.keyboard.append_global_keybindings({
     awful.key(
         {},
@@ -448,6 +452,16 @@ awful.keyboard.append_global_keybindings({
         --end
         xrandr.xrandr
         --{description = "swap all possible arrangements of monitors", group = "hotkeys"}
+    )
+})
+
+-- Custom keybindings
+awful.keyboard.append_global_keybindings({
+    awful.key(
+        { modkey },
+        "=",
+        function () awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible end,
+        {description = "toggle systray visibility", group = "custom"}
     )
 })
 
