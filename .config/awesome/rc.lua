@@ -21,6 +21,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local gfs = require("gears.filesystem")
+local theme_dir = gfs.get_configuration_dir()..'/theme'
+
 -- Include widgets
 local volumearc_widget = require("widgets.volumearc.volumearc")
 local calendar_widget = require("widgets.calendar.calendar")
@@ -78,7 +81,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+mylauncher = awful.widget.launcher({ image = theme_dir.."/images/archlinux-logo-crystal.svg",
                                      menu = mymainmenu })
 
 -- Menubar configuration
