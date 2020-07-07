@@ -11,6 +11,8 @@ local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 local theme_dir = gfs.get_configuration_dir()..'/theme'
 
+local shape = require("gears.shape")
+
 local theme = {}
 
 theme.font          = "sans 8.5"
@@ -60,6 +62,8 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
+theme.notification_bg = "#222222" .. "cc"
+theme.notification_shape = shape.rounded_rect
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
