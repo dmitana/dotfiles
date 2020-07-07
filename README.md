@@ -1,6 +1,9 @@
-## Dotfiles
+# Dotfiles
 
-## Getting Started
+## Prerequisites
+* [Installed Arch Linux](https://github.com/dmitana/dotfiles-test/wiki/Arch-Linux-Setup) 
+
+## Installation
 1. Add `.dots` directory to the `.gitignore` file.
 ```bash
 $ echo ".dots" >> .gitignore
@@ -40,8 +43,25 @@ $ dots checkout
 $ dots config --local status.showUntrackedFiles no
 ```
 
-## Optional
-1. Use predefined xorg configurations.
+6. Install [zsh](.oh-my-zsh/custom).
+
+7. Install [powerline](https://github.com/powerline/powerline) for tmux (based on [this answer](https://askubuntu.com/questions/283908/how-can-i-install-and-use-powerline-plugin) and [doc](https://powerline.readthedocs.io/en/latest/overview.html)). Quick install (when fonts are already installed).
 ```bash
-$ sudo ln -s ~/xorg_conf/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
+$ pip install --user powerline-status
 ```
+
+8. Install [nvim](.config/nvim).
+
+### Optional
+1. Use the predefined `etc` configuration.
+```bash
+# X input configuration
+$ sudo ln -s ~/etc/xorg/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
+
+# Udev udisks configuration
+$ sudo ln -s ~/etc/udev/99-udisks2.rules /etc/udev/rules.d/99-udisks2.rules
+$ sudo ln -s ~/etc/tmpfiles/media.conf /etc/tmpfiles.d/media.conf # set mount directory to the /media/$USER instead of /run/media/$USER
+```
+
+## TODO
+- [ ] Customize the tmux's powerline.
