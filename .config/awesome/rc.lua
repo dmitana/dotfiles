@@ -29,6 +29,7 @@ local volumearc_widget = require("widgets.volumearc.volumearc")
 local calendar_widget = require("widgets.calendar.calendar")
 local battery_widget = require("widgets.battery.battery")
 local brightness_widet = require("widgets.brightness.brightness")
+local spotify_widget = require("widgets.spotify.spotify")
 local xrandr = require("xrandr")
 
 -- {{{ Error handling
@@ -215,6 +216,11 @@ screen.connect_signal("request::desktop_decoration", function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             s.systray,
+            spotify_widget({
+                dim_when_paused = true,
+                dim_opacity = 0.5,
+                show_tooltip = true
+            }),
             battery_widget({
                 display_notification = true
             }),
@@ -424,6 +430,33 @@ awful.keyboard.append_global_keybindings({
         "XF86AudioMute",
         function () awful.spawn("amixer -D pulse sset Master toggle") end,
         {description = "toggle mute", group = "hotkeys"}
+    ),
+    awful.key(
+        {},
+        "XF86AudioPlay",
+        function () awful.util.spawn_with_shell(
+            "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+            )
+        end,
+        {description = "Play/Pause", group = "hotkeys"}
+    ),
+    awful.key(
+        {},
+        "XF86AudioNext",
+        function () awful.util.spawn_with_shell(
+            "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+            )
+        end,
+        {description = "Next", group = "hotkeys"}
+    ),
+    awful.key(
+        {},
+        "XF86AudioPrev",
+        function () awful.util.spawn_with_shell(
+            "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+            )
+        end,
+        {description = "Previous", group = "hotkeys"}
     ),
     awful.key(
         {},
