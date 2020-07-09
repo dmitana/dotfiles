@@ -16,5 +16,6 @@
     "python.formatting.provider": "autopep8",
     "diagnostic.signOffset": 9999999,
     "diagnostic.checkCurrentLine": true,
-    "r.lsp.diagnostics": false
+    "r.lsp.diagnostics": false,
+    "pyright.useLibraryCodeForTypes": true
 }
