@@ -1,40 +1,14 @@
-# My Custom NVIM Configuration
-
-This repository contains custom NVIM configuration that I use.
+# NVIM configuration
 
 ## Installation
+1. Run `install.sh`.
 
-1. Clone this repository.
-```bash
-# Use SSH or HTTPS
-$ git clone git@github.com:dmitana/nvim-custom.git ~/.nvim/
-$ git clone https://github.com/dmitana/nvim-custom.git ~/.nvim/
-```
-
-2. Run `install.sh`.
-
-3. Install the NeoVim Python module.
-```bash
-$ pip3 install --user neovim
-```
-
-3. Install nodejs when necessary (for coc.nvim plugin)
-```bash
-$ curl -sL install-node.now.sh/lts | bash
-```
-
-4. Launch nvim, execute PlugInstall, update the plugins, and exit.
+2. Launch nvim, execute PlugInstall, update the plugins, and exit.
 ```bash
 $ nvim
-$ :PlugInstall
-$ :UpdateRemotePlugins
-$ :q!
-$ :q!
-```
-
-5. Create the symbolic link for the `coc-snippets` extension.
-```bash
-$ ln -s ~/.nvim/coc/ultisnips/python.snippets ~/.config/coc/ultisnips/python.snippets
+  :PlugInstall
+  :UpdateRemotePlugins
+  :qa!
 ```
 
 ## Usage in a docker container
@@ -47,9 +21,9 @@ This will work only if a docker container will run under root user (without `-u 
 3. Launch nvim, execute PlugInstall, update the plugins, and exit.
 ```bash
 $ nvim
-$ :PlugInstall
-$ :UpdateRemotePlugins
-$ :qa!
+  :PlugInstall
+  :UpdateRemotePlugins
+  :qa!
 ```
 
 ## TODO
@@ -58,5 +32,3 @@ $ :qa!
 - [ ] Show warning when a parameter is missing in a docstring.
 - [ ] Debugger.
 - [ ] Cheatsheet for vim's and plugin's shortcuts.
-
-## FIXME
