@@ -50,6 +50,11 @@ $ dots config --local status.showUntrackedFiles no
 $ pip install --user powerline-status
 ```
 
+Or on Arch simply.
+```bash
+$ yay -S powerline powerline-fonts
+```
+
 8. Install [nvim](.config/nvim).
 
 ### Optional
