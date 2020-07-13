@@ -1,13 +1,30 @@
 # Oh My Zsh configuration 
 
 ## Installation
-1. Install Zsh and Oh My Zsh from [here](https://github.com/robbyrussell/oh-my-zsh).
-
-2. Clone custom plugins.
+1. Install Zsh and make it your default shell.
 ```bash
-$ cd ~/.oh-my-zsh/custom/
-$ git submodule init 
-$ git submodule update
+$ yay -S zsh
+$ chsh -s $(which zsh)
+```
+
+2. Log out and login back again to use your new default shell.
+
+3. Install [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh).
+```bash
+$ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+4. Install [powerline fonts](https://github.com/powerline/fonts). A preferred way is `yay -S powerline-fonts-git`, but currently the package is [flagged as out-of-date from (2020-06-29)](https://aur.archlinux.org/packages/powerline-fonts-git/), so manual installation is needed.
+```bash
+$ git clone https://github.com/powerline/fonts.git --depth=1 powerline-fonts
+$ cd powerline-fonts
+$ ./install.sh
+```
+
+5. Clone custom plugins.
+```bash
+$ dots submodule init 
+$ dots submodule update
 ```
 
 ## Used Plugins
