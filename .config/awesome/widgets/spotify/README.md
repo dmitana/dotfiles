@@ -44,10 +44,7 @@ Gives following widget:
 First you need to have spotify CLI installed, it uses dbus to communicate with spotify-client:
 
 ```bash 
-git clone https://gist.github.com/fa6258f3ff7b17747ee3.git
-cd ./fa6258f3ff7b17747ee3 
-chmod +x sp
-sudo cp ./sp /usr/local/bin/
+sudo cp sp /usr/local/bin/
 ```
 
 Then clone repo under **~/.config/awesome/** and add widget in **rc.lua**:
