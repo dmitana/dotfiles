@@ -12,10 +12,10 @@ $ echo ".dots" >> .gitignore
 2. Clone the repo.
 ```bash
 # SSH
-$ git clone --bare git@github.com:dmitana/dotfiles-test.git $HOME/.dots
+$ git clone --bare git@github.com:dmitana/dotfiles.git $HOME/.dots
 
 # HTTPS
-$ git clone --base https://github.com/dmitana/dotfiles-test.git $HOME/.dots
+$ git clone --bare https://github.com/dmitana/dotfiles.git $HOME/.dots
 ```
 
 3. Restart shell or define the alias in the current shell scope.
