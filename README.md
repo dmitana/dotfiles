@@ -21,6 +21,9 @@ $ git clone --bare https://github.com/dmitana/dotfiles.git $HOME/.dots
 3. Restart shell or define the alias in the current shell scope.
 ```bash
 $ alias dots='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+
+# Add fetch line if you want behaviour as with a non-bare repository clone.
+$ dots config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 ```
 
 4. Checkout the actual content from the bare repository to your `$HOME`. `$HOME` folder might already have some stock configuration files which would be overwritten by Git (e.g. `.vimrc`, `.zshrc`, ...).
