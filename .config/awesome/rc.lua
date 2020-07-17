@@ -690,6 +690,7 @@ end)
 -- Autostart applications
 awful.spawn.with_shell("compton")
 awful.spawn.with_shell("nm-applet")
+awful.spawn.with_shell("blueman-applet")
 awful.spawn.with_shell("xfce4-clipman")
 awful.spawn.with_shell("udiskie")
 awful.spawn.with_shell("autorandr --change")
