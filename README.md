@@ -76,6 +76,7 @@ $ sudo ln -s ~/etc/sddm/xorg.conf /etc/sddm.conf.d/xorg.conf
 $ sudo ln -s ~/etc/sddm/general.conf /etc/sddm.conf.d/general.conf
 $ sudo ln -s ~/etc/sddm/theme.conf /etc/sddm.conf.d/theme.conf
 $ sudo cp ~/etc/sddm/themes/Sugar-Candy/theme.conf.user /usr/share/sddm/themes/Sugar-Candy/theme.conf.user
+$ sudo ln -sf ~/etc/sddm/scripts/Xsetup /usr/share/sddm/scripts/Xsetup
 ```
 
 ## TODO
