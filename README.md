@@ -61,7 +61,7 @@ $ yay -S powerline powerline-fonts
 8. Install [nvim](.config/nvim).
 
 ### Optional
-1. Use the predefined `etc` configuration.
+1. Use the predefined configurations for `X server`, `Udev udisks` and `Sddm`.
 ```bash
 # X input configuration
 $ sudo ln -s ~/etc/xorg/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
@@ -69,6 +69,13 @@ $ sudo ln -s ~/etc/xorg/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
 # Udev udisks configuration
 $ sudo ln -s ~/etc/udev/99-udisks2.rules /etc/udev/rules.d/99-udisks2.rules
 $ sudo ln -s ~/etc/tmpfiles/media.conf /etc/tmpfiles.d/media.conf # set mount directory to the /media/$USER instead of /run/media/$USER
+
+# Sddm configuration
+$ sudo mkdir /etc/sddm.conf.d
+$ sudo ln -s ~/etc/sddm/xorg.conf /etc/sddm.conf.d/xorg.conf
+$ sudo ln -s ~/etc/sddm/general.conf /etc/sddm.conf.d/general.conf
+$ sudo ln -s ~/etc/sddm/theme.conf /etc/sddm.conf.d/theme.conf
+$ sudo cp ~/etc/sddm/themes/Sugar-Candy/theme.conf.user /usr/share/sddm/themes/Sugar-Candy/theme.conf.user
 ```
 
 ## TODO
