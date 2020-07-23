@@ -63,7 +63,8 @@ $ yay -S powerline powerline-fonts
 ### Optional
 1. Use the predefined configurations for `X server`, `Udev udisks` and `Sddm`.
 ```bash
-# X input configuration
+# Monitor and X input configuration
+$ sudo ln -s ~/etc/xorg/10-monitor.conf /etc/X11/xorg.conf.d/10-monitor.conf
 $ sudo ln -s ~/etc/xorg/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
 
 # Udev udisks configuration
