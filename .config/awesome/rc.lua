@@ -56,7 +56,7 @@ editor_cmd = terminal .. " -e " .. editor
 browser = "google-chrome-stable"
 
 -- Definitions of used programs
-whatsapp = "whatsapp-nativefier-dark"
+whatsapp = "whatsapp-nativefier"
 slack = "slack"
 
 -- Default modkey.
