@@ -25,6 +25,7 @@ Plug 'yssl/QFEnter'
 " Plug 'nikvdp/neomux'
 Plug 'jalvesaq/Nvim-R'
 Plug 'tmhedberg/SimpylFold'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " ===== NVIM configuration =====
@@ -149,6 +150,9 @@ let g:qfenter_keymap.topen = ['<C-t>']
 " --- SimplyFold plugin ---
 set foldlevelstart=99
 let g:SimpylFold_docstring_preview = 1
+
+" --- Vim Devicons plugin ---
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ' '
 
 " --- Coc plugin ---
 " Coc global extensions
