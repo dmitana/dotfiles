@@ -498,6 +498,16 @@ awful.keyboard.append_global_keybindings({
     )
 })
 
+-- Terminal apps keybindings
+awful.keyboard.append_global_keybindings({
+    awful.key(
+        { modkey },
+        "e",
+        function () awful.spawn(terminal.." -e  ./.config/vifm/scripts/vifmrun") end,
+        {description = "vifm", group = "terminal apps"}
+    )
+})
+
 client.connect_signal("request::default_mousebindings", function()
     awful.mouse.append_client_mousebindings({
         awful.button({ }, 1, function (c)
@@ -581,7 +591,7 @@ ruled.client.connect_signal("request::rules", function()
         rule_any = {
             instance = { "copyq", "pinentry" },
             class    = {
-                "Arandr", "Blueman-manager", "Gpick", "Kruler", "Sxiv",
+                "Arandr", "Blueman-manager", "Gpick", "Kruler",
                 "Tor Browser", "Wpa_gui", "veromix", "xtightvncviewer"
             },
             -- Note that the name property shown in xprop might be set slightly after creation of the client
