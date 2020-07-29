@@ -17,5 +17,7 @@
     "diagnostic.signOffset": 9999999,
     "diagnostic.checkCurrentLine": true,
     "r.lsp.diagnostics": false,
-    "pyright.useLibraryCodeForTypes": true
+    "pyright.useLibraryCodeForTypes": true,
+    "tsserver.npm": "/usr/local/bin/npm",
+    "html.autoClosingTags": true
 }

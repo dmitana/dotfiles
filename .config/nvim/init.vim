@@ -83,32 +83,8 @@ noremap <Leader>P "+p
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
 set autoindent
 set encoding=utf-8
-
-" Python *.py configuration
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set expandtab |
-    \ let &colorcolumn="73,79,120" |
-    \ set autoindent |
-    \ set fileformat=unix |
-    \ let NERDDefaultAlign="left"
-
-" Full stack development
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-
-" R configuration
-au BufNewFile,BufRead *.r
-    \ let &colorcolumn="80" |
-    \ set fileformat=unix |
-    \ let NERDDefaultAlign="left"
 
 " ===== Plugins configuration =====
 " --- Spelunker plugin ---
@@ -163,7 +139,9 @@ let g:coc_global_extensions = [
     \ 'coc-snippets',
     \ 'coc-json',
     \ 'coc-r-lsp',
-    \ 'coc-explorer'
+    \ 'coc-explorer',
+    \ 'coc-tsserver',
+    \ 'coc-html'
     \ ]
 
 " To make completion works like VSCode
