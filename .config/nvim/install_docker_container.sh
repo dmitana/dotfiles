@@ -5,6 +5,8 @@ apt update && apt install -y wget curl git icu-devtools silversearcher-ag
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/coc/ultisnips
 ln -s ~/.nvim/init.vim ~/.config/nvim/init.vim
+ln -s ~/.nvim/ftdetect ~/.config/nvim/ftdetect
+ln -s ~/.nvim/ftplugin ~/.config/nvim/ftplugin
 ln -s ~/.nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 ln -s ~/.coc/ultisnips/python.snippets ~/.config/coc/ultisnips/python.snippets
 
