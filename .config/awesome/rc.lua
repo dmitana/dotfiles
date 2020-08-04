@@ -58,6 +58,7 @@ browser = "google-chrome-stable"
 -- Definitions of used programs
 whatsapp = "whatsapp-nativefier"
 slack = "slack"
+gui_file_manager = "thunar"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -214,23 +215,29 @@ screen.connect_signal("request::desktop_decoration", function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
             s.systray,
+			wibox.widget.textbox("  "),
             spotify_widget({
                 dim_when_paused = true,
                 dim_opacity = 0.5,
                 show_tooltip = true
             }),
+			mykeyboardlayout,
+			wibox.widget.textbox("  "),
             battery_widget({
                 display_notification = true
             }),
+			wibox.widget.textbox("  "),
             brightness_widet({
                 get_brightness_cmd = "xbacklight -get",
                 inc_brightness_cmd = "xbacklight -inc 5",
                 dec_brightness_cmd = "xbacklight -dec 5"
             }),
+			wibox.widget.textbox("  "),
             volumearc_widget(),
+			wibox.widget.textbox("  "),
             mytextclock,
+			wibox.widget.textbox("  "),
             s.mylayoutbox,
         },
     }
@@ -268,6 +275,8 @@ awful.keyboard.append_global_keybindings({
               end,
               {description = "lua execute prompt", group = "awesome"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+              {description = "open a GUI file manager", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, "e", function () awful.spawn(gui_file_manager) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey,           }, "F1", function () awful.spawn(browser) end,
               {description = "open a browser", group = "launcher"}),
