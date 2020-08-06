@@ -275,9 +275,9 @@ awful.keyboard.append_global_keybindings({
               end,
               {description = "lua execute prompt", group = "awesome"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
-              {description = "open a GUI file manager", group = "launcher"}),
-    awful.key({ modkey, "Shift"   }, "e", function () awful.spawn(gui_file_manager) end,
               {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, "e", function () awful.spawn(gui_file_manager) end,
+              {description = "open a GUI file manager", group = "launcher"}),
     awful.key({ modkey,           }, "F1", function () awful.spawn(browser) end,
               {description = "open a browser", group = "launcher"}),
     awful.key({ modkey,           }, "F5", function () awful.spawn(whatsapp) end,
@@ -504,6 +504,18 @@ awful.keyboard.append_global_keybindings({
         "=",
         function () awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible end,
         {description = "toggle systray visibility", group = "custom"}
+    ),
+    awful.key(
+        { modkey, "Mod1" },
+        "l",
+        function () awful.util.spawn_with_shell("slock") end,
+        {description = "lock screen", group = "custom"}
+    ),
+    awful.key(
+        { modkey, "Control" },
+        "s",
+        function () awful.spawn("systemctl suspend") end,
+        {description = "suspend", group = "custom"}
     )
 })
 
