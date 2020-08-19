@@ -19,5 +19,6 @@
     "r.lsp.diagnostics": false,
     "pyright.useLibraryCodeForTypes": true,
     "tsserver.npm": "/usr/local/bin/npm",
-    "html.autoClosingTags": true
+    "html.autoClosingTags": true,
+	"coc.preferences.rootPatterns": [".vim"]
 }
