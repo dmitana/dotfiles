@@ -20,5 +20,6 @@
     "pyright.useLibraryCodeForTypes": true,
     "tsserver.npm": "/usr/local/bin/npm",
     "html.autoClosingTags": true,
-	"coc.preferences.rootPatterns": [".vim"]
+	"coc.preferences.rootPatterns": [".vim"],
+	"yaml.format.enable": true
 }

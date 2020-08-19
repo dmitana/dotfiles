@@ -141,7 +141,8 @@ let g:coc_global_extensions = [
     \ 'coc-r-lsp',
     \ 'coc-explorer',
     \ 'coc-tsserver',
-    \ 'coc-html'
+    \ 'coc-html',
+	\ 'coc-yaml'
     \ ]
 
 " To make completion works like VSCode
