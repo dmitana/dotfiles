@@ -198,7 +198,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 
     -- Create a systray widget
     s.systray = wibox.widget.systray()
-    s.systray.visible = false
+    --s.systray.visible = false
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
@@ -719,7 +719,7 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 -- Autostart applications
-awful.spawn.with_shell("compton")
+awful.spawn.with_shell("picom -b --experimental-backends --dbus --config ~/.config/picom/picom.conf")
 awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("blueman-applet")
 awful.spawn.with_shell("xfce4-clipman")
