@@ -26,6 +26,9 @@ Plug 'yssl/QFEnter'
 Plug 'jalvesaq/Nvim-R'
 Plug 'tmhedberg/SimpylFold'
 Plug 'ryanoasis/vim-devicons'
+Plug 'tpope/vim-dotenv'
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 call plug#end()
 
 " ===== NVIM configuration =====
@@ -130,6 +133,18 @@ let g:SimpylFold_docstring_preview = 1
 " --- Vim Devicons plugin ---
 let g:WebDevIconsNerdTreeBeforeGlyphPadding = ' '
 
+" --- Vim-dadbod plugin ---
+" Map exec line and selection in DB
+" To set db url use `:let g:db = 'url'`
+" Or use Vim-Dotenv `:let g:db = DotenvGet('DB_URL')`
+xnoremap <expr> <Plug>(DBExe)     db#op_exec()
+nnoremap <expr> <Plug>(DBExe)     db#op_exec()
+nnoremap <expr> <Plug>(DBExeLine) db#op_exec() . '_'
+xmap <leader>db  <Plug>(DBExe)
+nmap <leader>db  <Plug>(DBExe)
+omap <leader>db  <Plug>(DBExe)
+nmap <leader>dbb <Plug>(DBExeLine)
+
 " --- Coc plugin ---
 " Coc global extensions
 let g:coc_global_extensions = [
@@ -142,7 +157,9 @@ let g:coc_global_extensions = [
     \ 'coc-explorer',
     \ 'coc-tsserver',
     \ 'coc-html',
-	\ 'coc-yaml'
+	\ 'coc-yaml',
+	\ 'coc-sql',
+	\ 'coc-db'
     \ ]
 
 " To make completion works like VSCode
