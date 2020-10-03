@@ -293,6 +293,8 @@ fileviewer *.torrent dumptorrent -v %c
 
 " FuseZipMount
 filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
+	   \ {Open with Thunar}
+	   \ thunar %c,
        \ {Mount with fuse-zip}
        \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
        \ {View contents}
