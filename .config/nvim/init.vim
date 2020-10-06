@@ -29,6 +29,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-dotenv'
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 
 " ===== NVIM configuration =====
