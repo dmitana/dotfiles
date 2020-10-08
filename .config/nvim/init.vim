@@ -160,8 +160,12 @@ let g:coc_global_extensions = [
     \ 'coc-html',
 	\ 'coc-yaml',
 	\ 'coc-sql',
-	\ 'coc-db'
+	\ 'coc-db',
+	\ 'coc-omnisharp'
     \ ]
+
+" coc-omnisharp
+let $FrameworkPathOverride="~/.config/coc/extensions/coc-omnisharp-data/server/omnisharp"
 
 " To make completion works like VSCode
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
