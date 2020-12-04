@@ -24,6 +24,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'yssl/QFEnter'
 " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'nikvdp/neomux'
+Plug 'OmniSharp/omnisharp-vim'
 Plug 'jalvesaq/Nvim-R'
 Plug 'tmhedberg/SimpylFold'
 Plug 'ryanoasis/vim-devicons'
