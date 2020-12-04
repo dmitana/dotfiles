@@ -9,6 +9,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'sheerun/vim-polyglot'
 Plug '907th/vim-auto-save'
 " Tag 2.0.0 has bug and it is not working in nvim
 Plug 'heavenshell/vim-pydocstring', {'branch': 'master', 'tag': '1.0.0'}
@@ -145,6 +146,9 @@ xmap <leader>db  <Plug>(DBExe)
 nmap <leader>db  <Plug>(DBExe)
 omap <leader>db  <Plug>(DBExe)
 nmap <leader>dbb <Plug>(DBExeLine)
+
+" --- Vim Polyglot plugin ---
+let g:python_highlight_all = 1
 
 " --- Coc plugin ---
 " Coc global extensions
