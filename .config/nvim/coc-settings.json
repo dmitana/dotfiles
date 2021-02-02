@@ -21,5 +21,6 @@
     "tsserver.npm": "/usr/local/bin/npm",
     "html.autoClosingTags": true,
 	"coc.preferences.rootPatterns": [".vim"],
-	"yaml.format.enable": true
+	"yaml.format.enable": true,
+	"omnisharp.version": "v1.36.1"
 }
