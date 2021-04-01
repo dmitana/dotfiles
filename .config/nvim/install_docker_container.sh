@@ -26,10 +26,15 @@ ln -s ~/.config/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/nvim
 # Install the Vim-plug Plugin Manager
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# Install python3 if doesn't exist
+# Install python3 if it doesn't exist
 if ! command -v python3 &> /dev/null
 then
     apt install -y python3 python3-distutils
+fi
+
+# Install pip3 if it doesn't exist
+if ! command -v pip3 &> /dev/null
+then
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     python3 get-pip.py
     rm get-pip.py
