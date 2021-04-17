@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -117,6 +117,11 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Manpager using bat - a cat clone with wings
+if command -v bat &> /dev/null; then
+	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/denis/Programs/google-cloud-sdk/path.zsh.inc' ]; then . '/home/denis/Programs/google-cloud-sdk/path.zsh.inc'; fi
