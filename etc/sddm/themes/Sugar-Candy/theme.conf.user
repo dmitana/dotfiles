@@ -1,3 +1,7 @@
+[General]
+
+Background="Backgrounds/death_star.jpg"
+
 ## [Interface Behavior]
 
 ForceHideCompletePassword="true"
