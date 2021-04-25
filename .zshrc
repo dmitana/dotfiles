@@ -123,6 +123,10 @@ if command -v bat &> /dev/null; then
 	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 
+# Fzf key bindings and completion
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/denis/Programs/google-cloud-sdk/path.zsh.inc' ]; then . '/home/denis/Programs/google-cloud-sdk/path.zsh.inc'; fi
 
