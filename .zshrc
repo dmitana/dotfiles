@@ -139,5 +139,9 @@ if [ -n "$DESKTOP_SESSION" ];then
     export SSH_AUTH_SOCK
 fi
 
+# Add TAB completion to chubin/cheat.sh
+fpath=(~/.zsh.d/ $fpath)
+compinit
+
 # Clear
 clear
