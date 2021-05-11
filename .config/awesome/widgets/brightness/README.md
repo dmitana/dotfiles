@@ -1,5 +1,7 @@
 # Brightness widget
 
+Source: [streetturtle/awesome-wm-widgets/brightness-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/brightness-widget)
+
 This widget represents current brightness level: ![Brightness widget](./br-wid-1.png)
 
 ## Customization

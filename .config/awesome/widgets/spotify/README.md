@@ -1,5 +1,7 @@
 # Spotify widget
 
+Source: [streetturtle/awesome-wm-widgets/spotify-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/spotify-widget)
+
 This widget displays currently playing song on [Spotify for Linux](https://www.spotify.com/download/linux/) client: ![screenshot](./spo-wid-default.png) and consists of two parts: 
 
  - status icon which shows if music is currently playing

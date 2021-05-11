@@ -1,5 +1,7 @@
 # Calendar Widget
 
+Source: [streetturtle/awesome-wm-widgets/calendar-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/calendar-widget)
+
 Calendar widget for Awesome WM - slightly improved version of the `wibox.widget.calendar`.
 
 ## Features

@@ -1,5 +1,7 @@
 # Battery widget
 
+Source: [streetturtle/awesome-wm-widgets/battery-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/battery-widget)
+
 Simple and easy-to-install widget for Awesome Window Manager.
 
 This widget consists of:
