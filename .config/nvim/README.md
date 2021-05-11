@@ -25,10 +25,3 @@ $ nvim
   :UpdateRemotePlugins
   :qa!
 ```
-
-## TODO
-- [ ] Folding.
-- [ ] Fix neomux + vim-airline.
-- [ ] Show warning when a parameter is missing in a docstring.
-- [ ] Debugger.
-- [ ] Cheatsheet for vim's and plugin's shortcuts.

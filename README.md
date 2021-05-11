@@ -80,6 +80,3 @@ $ sudo cp ~/.config/awesome/theme/wallpapers/* /usr/share/sddm/themes/Sugar-Cand
 $ sudo cp ~/etc/sddm/themes/Sugar-Candy/theme.conf.user /usr/share/sddm/themes/Sugar-Candy/theme.conf.user
 $ sudo ln -sf ~/etc/sddm/scripts/Xsetup /usr/share/sddm/scripts/Xsetup
 ```
-
-## TODO
-- [ ] Customize the tmux's powerline.
