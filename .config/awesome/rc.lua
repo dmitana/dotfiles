@@ -25,7 +25,7 @@ local gfs = require("gears.filesystem")
 local theme_dir = gfs.get_configuration_dir()..'/theme'
 
 -- Include widgets
-local volumearc_widget = require("widgets.volumearc.volumearc")
+local volume_widget = require("widgets.volume.volume")
 local calendar_widget = require("widgets.calendar.calendar")
 local battery_widget = require("widgets.battery.battery")
 local brightness_widet = require("widgets.brightness.brightness")
@@ -234,7 +234,9 @@ screen.connect_signal("request::desktop_decoration", function(s)
                 dec_brightness_cmd = "xbacklight -dec 5"
             }),
 			wibox.widget.textbox("  "),
-            volumearc_widget(),
+			volume_widget{
+				widget_type = 'arc'
+			},
 			wibox.widget.textbox("  "),
             mytextclock,
 			wibox.widget.textbox("  "),
@@ -425,19 +427,19 @@ awful.keyboard.append_global_keybindings({
     awful.key(
         {},
         "XF86AudioRaiseVolume",
-        function () awful.spawn("amixer -D pulse sset Master 5%+") end,
+		function() volume_widget:inc() end,
         {description = "volume up", group = "hotkeys"}
     ),
     awful.key(
         {},
         "XF86AudioLowerVolume",
-        function () awful.spawn("amixer -D pulse sset Master 5%-") end,
+		function() volume_widget:dec() end,
         {description = "volume down", group = "hotkeys"}
     ),
     awful.key(
         {},
         "XF86AudioMute",
-        function () awful.spawn("amixer -D pulse sset Master toggle") end,
+		function() volume_widget:toggle() end,
         {description = "toggle mute", group = "hotkeys"}
     ),
     awful.key(
