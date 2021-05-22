@@ -46,7 +46,7 @@ $ dots checkout
 $ dots config --local status.showUntrackedFiles no
 ```
 
-6. Install [zsh](.oh-my-zsh/custom).
+6. Install [zsh](.config/zsh).
 
 7. Install [powerline](https://github.com/powerline/powerline) for tmux (based on [this answer](https://askubuntu.com/questions/283908/how-can-i-install-and-use-powerline-plugin) and [doc](https://powerline.readthedocs.io/en/latest/overview.html)). Quick install (when fonts are already installed).
 ```bash
