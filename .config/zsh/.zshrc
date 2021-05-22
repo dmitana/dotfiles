@@ -24,6 +24,8 @@ HISTFILE="$cache_dir/history"
 # Basic auto/tab complete
 autoload -U compinit
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(|.|..) ]] && reply=(..)'
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)  # Include hidden files
@@ -93,3 +95,31 @@ local fzf_key_bindings_file="/usr/share/fzf/key-bindings.zsh"
 local fzf_completion_file="/usr/share/fzf/completion.zsh"
 [ -f "$fzf_key_bindings_file" ] && source "$fzf_key_bindings_file"
 [ -f "$fzf_completion_file" ] && source "$fzf_completion_file"
+
+# ===== Plugins =====
+local zplug_init_file="/usr/share/zsh/scripts/zplug/init.zsh"
+[ -f "$zplug_init_file" ] && source "$zplug_init_file"
+
+# Declare plugins
+zplug "zsh-users/zsh-completions"  # Additional completion definitions for Zsh.
+zplug "zsh-users/zsh-autosuggestions"  # Fish-like autosuggestions for zsh
+zplug "zsh-users/zsh-history-substring-search"  # ZSH port of Fish history search (up arrow)
+zplug "zsh-users/zsh-syntax-highlighting"  # Fish shell like syntax highlighting for Zsh.
+
+# Install plugins that are not installed
+if ! zplug check; then
+    zplug install
+fi
+
+# Source plugins and add commands to the $PATH
+zplug load
+
+# ===== Plugins configuration =====
+# --- zsh-autosuggestions plugin ---
+bindkey '^ ' autosuggest-accept
+
+# --- zsh-history-substring-search plugin ---
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
