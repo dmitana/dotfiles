@@ -6,7 +6,7 @@ typeset -U PATH path
 path=("$HOME/.local/bin" $path)
 export PATH
 
-# Add TAB completion to chubin/cheat.sh
+# Add zsh scripts to fpath
 fpath=("$ZDOTDIR/zsh.d" $fpath)
 
 # Default programs
