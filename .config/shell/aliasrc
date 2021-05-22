@@ -1,0 +1,58 @@
+#!/bin/sh
+
+alias vimdiff="nvim -d"
+alias cht="cht.sh"
+
+# Verbosity and settings that you pretty much just always are going to want
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vi" \
+	mkd="mkdir -pv"
+
+# Colorize commands when possible
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi"
+
+# ls
+alias \
+  la="ls -la" \
+  las="ls -lat" \
+  ll="ls -l" \
+  lls="ls -lt"
+
+# Git
+alias \
+  g="git" \
+  gst="git status" \
+  gd="git diff" \
+  gdc="git diff --cached" \
+  gf="git fetch" \
+  gp="git pull" \
+  gpr="git pull --rebase" \
+  gl="git log" \
+  ga="git add"
+
+# Dots
+alias \
+  dots="/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME" \
+  dt="dots" \
+  dtst="dots status" \
+  dtd="dots diff" \
+  dtdc="dots diff --cached" \
+  dtft="dots fetch" \
+  dtp="dots pull" \
+  dtpr="dots pull --rebase" \
+  dtl="dots log" \
+  dta="dots add"
+
+# Quick access
+alias \
+  zshrc="$EDITOR $ZDOTDIR/.zshrc" \
+  zshenv="$EDITOR $HOME/.zshenv" \
+  aliasrc="$EDITOR $HOME/.config/shell/aliasrc" \
+  nvimrc="$EDITOR $HOME/.config/nvim/init.vim" \
+  awsmrc="$EDITOR $HOME/.config/awesome/rc.lua"
