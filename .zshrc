@@ -87,3 +87,9 @@ bindkey -s '^o' 'vicd\n'
 # Load aliases
 local aliasrc_file="$HOME/.config/shell/aliasrc"
 [ -f "$aliasrc_file" ] && source "$aliasrc_file"
+
+# Fzf key bindings and completion
+local fzf_key_bindings_file="/usr/share/fzf/key-bindings.zsh"
+local fzf_completion_file="/usr/share/fzf/completion.zsh"
+[ -f "$fzf_key_bindings_file" ] && source "$fzf_key_bindings_file"
+[ -f "$fzf_completion_file" ] && source "$fzf_completion_file"
