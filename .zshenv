@@ -1,3 +1,6 @@
+# Set $ZDOTDIR
+export ZDOTDIR="$HOME/.config/zsh"
+
 # Set $PATH
 typeset -U PATH path
 path=("$HOME/.local/bin" $path)
