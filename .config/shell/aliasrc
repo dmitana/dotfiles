@@ -34,7 +34,8 @@ alias \
   gp="git pull" \
   gpr="git pull --rebase" \
   gl="git log" \
-  ga="git add"
+  ga="git add" \
+  gb="git branch"
 
 # Dots
 alias \
@@ -43,11 +44,12 @@ alias \
   dtst="dots status" \
   dtd="dots diff" \
   dtdc="dots diff --cached" \
-  dtft="dots fetch" \
+  dtf="dots fetch" \
   dtp="dots pull" \
   dtpr="dots pull --rebase" \
   dtl="dots log" \
-  dta="dots add"
+  dta="dots add" \
+  dtb="dots branch"
 
 # Quick access
 alias \
