@@ -117,6 +117,9 @@ set shiftwidth=4
 set autoindent
 set encoding=utf-8
 
+" Search for visually selected text using //
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
 " ===== Plugins configuration =====
 " --- Spelunker plugin ---
 set nospell
