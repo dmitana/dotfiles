@@ -1,37 +1,63 @@
 " ===== Plugins =====
 call plug#begin('~/.config/nvim/bundle')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'morhetz/gruvbox'
-Plug 'scrooloose/nerdcommenter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'sheerun/vim-polyglot'
-Plug '907th/vim-auto-save'
+" General language support
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers
+
+" Python
+Plug 'Vimjas/vim-python-pep8-indent' " A nicer Python indentation style for vim
 " Tag 2.0.0 has bug and it is not working in nvim
-Plug 'heavenshell/vim-pydocstring', {'branch': 'master', 'tag': '1.0.0'}
-Plug 'kamykn/spelunker.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-eunuch'
-Plug 'honza/vim-snippets'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'yssl/QFEnter'
+Plug 'heavenshell/vim-pydocstring', {'branch': 'master', 'tag': '1.0.0'} " Generate Python docstring to your Python source code
+Plug 'tmhedberg/SimpylFold' " No-BS Python code folding for Vim
+
+" C#
+Plug 'OmniSharp/omnisharp-vim' " Vim omnicompletion (intellisense) and more for C#
+
+" R
+Plug 'jalvesaq/Nvim-R' " Vim plugin to work with R
+
+" Databases
+Plug 'tpope/vim-dadbod' " Modern database interface for Vim (PostgreSQL, MySQL, MongoDB, Redis, and many more)
+Plug 'kristijanhusak/vim-dadbod-ui' " Simple UI for vim-dadbod
+
+" Markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']} " Markdown preview plugin for (neo)vim
+
+" General coding support
+Plug 'scrooloose/nerdcommenter' " Vim plugin for intensely nerdy commenting powers
+Plug 'tpope/vim-surround' " Quoting/parenthesizing made simple
+Plug 'honza/vim-snippets' " vim-snipmate default snippets (Previously snipmate-snippets)
+
+" Syntax highlighting
+Plug 'sheerun/vim-polyglot' " A solid language pack for Vim (syntax highlighting)
+Plug 'ntpeters/vim-better-whitespace' " Better whitespace highlighting for Vim
+
+" Themes and styles
+Plug 'morhetz/gruvbox' " Retro groove color scheme for Vim
+Plug 'vim-airline/vim-airline'  " Lean & mean status/tabline for vim that's light as air
+Plug 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
+Plug 'ryanoasis/vim-devicons' " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
+
+" Git support
+Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
+Plug 'airblade/vim-gitgutter' " A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks
+Plug 'Xuyuanp/nerdtree-git-plugin' " A plugin of NERDTree showing git status
+
+" Navigation
+Plug 'scrooloose/nerdtree' " A tree explorer plugin for vim
+Plug 'jistr/vim-nerdtree-tabs' " NERDTree and tabs together in Vim, painlessly
+Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file, buffer, mru, tag, etc finder
+
+" Spelling
+Plug 'kamykn/spelunker.vim' " Improved vim spelling plugin (with camel case support)
+
+" General tools
+Plug 'tpope/vim-dotenv' " Basic support for .env and Procfile
+Plug 'tpope/vim-eunuch' " Helpers for UNIX
+Plug 'yssl/QFEnter' " Open a Quickfix item in a window you choose
+Plug '907th/vim-auto-save' " Automatically save changes to disk in Vim
+
 " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'nikvdp/neomux'
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'jalvesaq/Nvim-R'
-Plug 'tmhedberg/SimpylFold'
-Plug 'ryanoasis/vim-devicons'
-Plug 'tpope/vim-dotenv'
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 
 " ===== NVIM configuration =====
