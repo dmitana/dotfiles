@@ -54,7 +54,6 @@ Plug 'kamykn/spelunker.vim' " Improved vim spelling plugin (with camel case supp
 Plug 'tpope/vim-dotenv' " Basic support for .env and Procfile
 Plug 'tpope/vim-eunuch' " Helpers for UNIX
 Plug 'yssl/QFEnter' " Open a Quickfix item in a window you choose
-Plug '907th/vim-auto-save' " Automatically save changes to disk in Vim
 
 " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'nikvdp/neomux'
@@ -134,10 +133,6 @@ map <F5> <plug>NERDTreeTabsToggle<CR>
 "nnoremap <F5> :NERDTreeToggle<CR>
 " Ignore files and directories in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$', '^__pycache__$[[dir]]']
-
-" --- AutoSave plugin ---
-" Enable AutoSave on NVim startup
-"let g:auto_save=1
 
 " --- Gruvbox plugin ---
 let g:gruvbox_guisp_fallback="bg"
