@@ -93,12 +93,17 @@ local aliasrc_file="$HOME/.config/shell/aliasrc"
 # Fzf key bindings and completion
 local fzf_key_bindings_file="/usr/share/fzf/key-bindings.zsh"
 local fzf_completion_file="/usr/share/fzf/completion.zsh"
+local ubuntu_fzf="$HOME/.fzf.zsh"
 [ -f "$fzf_key_bindings_file" ] && source "$fzf_key_bindings_file"
 [ -f "$fzf_completion_file" ] && source "$fzf_completion_file"
+[ -f "$ubuntu_fzf" ] && source "$ubuntu_fzf"
 
 # ===== Plugins =====
-local zplug_init_file="/usr/share/zsh/scripts/zplug/init.zsh"
-[ -f "$zplug_init_file" ] && source "$zplug_init_file"
+# Source zplug (only one file will be sourced)
+local arch_zplug_init_file="/usr/share/zsh/scripts/zplug/init.zsh"
+local ubuntu_zplug_init_file="/usr/share/zplug/init.zsh"
+[ -f "$arch_zplug_init_file" ] && source "$arch_zplug_init_file"
+[ -f "$ubuntu_zplug_init_file" ] && source "$ubuntu_zplug_init_file"
 
 # Declare plugins
 zplug "zsh-users/zsh-completions"  # Additional completion definitions for Zsh.
