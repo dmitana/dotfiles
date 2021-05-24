@@ -3,11 +3,22 @@
 ## Installation
 1. Run `install.sh`.
 
-2. Launch nvim, execute PlugInstall, update the plugins, and exit.
+
+2. Install packer (add to `install.sh`)
+```bash
+$ git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+
+3. LSPs have to be installed mannually (add to `install.sh`)
+```bash
+$ sudo npm i -g pyright (for python)
+```
+
+4. Launch nvim, compile and install packages, then exit nvim.
 ```bash
 $ nvim
-  :PlugInstall
-  :UpdateRemotePlugins
+  :PackerCompile
+  :PackerInstall
   :qa!
 ```
 
@@ -25,3 +36,7 @@ $ nvim
   :UpdateRemotePlugins
   :qa!
 ```
+
+
+
+
