@@ -1,2 +1,6 @@
 require('plugins.plugins')
 require('plugins.nvim-lspconfig')
+require('plugins.nvim-compe')
+require('plugins.nvim-treesitter')
+require('plugins.themes')
+require('plugins.trouble')
