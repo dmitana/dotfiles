@@ -45,3 +45,30 @@ local servers = { 'pyright' }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup{ on_attach = on_attach }
 end
+
+-- Set custom diagnostic signs (the same as in `trouble.nvim` plugin)
+vim.fn.sign_define(
+  'LspDiagnosticsSignError',
+  {text = '', numhl = 'LspDiagnosticsDefaultError'}
+)
+vim.fn.sign_define(
+  'LspDiagnosticsSignWarning',
+  {text = '', numhl = 'LspDiagnosticsDefaultWarning'}
+)
+vim.fn.sign_define(
+  'LspDiagnosticsSignInformation',
+  {text = '', numhl = 'LspDiagnosticsDefaultInformation'}
+)
+vim.fn.sign_define(
+  'LspDiagnosticsSignHint',
+  {text = '', numhl = 'LspDiagnosticsDefaultHint'}
+)
+
+-- Set custom prefix in diagnostics virtual text
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = {
+      prefix = '',
+    },
+  }
+)
