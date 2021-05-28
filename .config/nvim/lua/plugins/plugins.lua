@@ -19,10 +19,17 @@ return require('packer').startup(function(use)
     'folke/trouble.nvim',
     requires = 'kyazdani42/nvim-web-devicons'
   }
+  use 'b3nj5m1n/kommentary' -- Neovim commenting plugin, written in lua
 
   -- Themes and styling
   use { 'npxbr/gruvbox.nvim', requires = 'rktjmp/lush.nvim' } -- Lua port of the most famous vim colorscheme
   use 'folke/tokyonight.nvim' -- A clean, dark Neovim theme written in Lua
   use 'joshdick/onedark.vim' -- A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme
+
+  -- Navigation
+  use { -- A file explorer tree for neovim written in lua
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
 
 end)
