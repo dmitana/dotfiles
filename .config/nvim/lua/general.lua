@@ -5,8 +5,11 @@ vim.wo.cursorline = true
 vim.wo.number = true
 vim.wo.relativenumber = true
 
--- Enable the colorscheme
-vim.cmd('colorscheme tokyonight')
+-- Enable syntax highlighting
+vim.cmd 'syntax on'
 
 -- Enable 24-bit RGB color in the TUI
-vim.g.termguicolors = true
+vim.cmd 'set termguicolors'
+
+-- Enable the colorscheme
+vim.cmd 'colorscheme onedark'

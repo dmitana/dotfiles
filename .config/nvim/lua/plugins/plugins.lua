@@ -24,7 +24,7 @@ return require('packer').startup(function(use)
   -- Themes and styling
   use { 'npxbr/gruvbox.nvim', requires = 'rktjmp/lush.nvim' } -- Lua port of the most famous vim colorscheme
   use 'folke/tokyonight.nvim' -- A clean, dark Neovim theme written in Lua
-  use 'joshdick/onedark.vim' -- A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme
+  use 'monsonjeremy/onedark.nvim' -- OneDark NeoVim theme written in Lua
 
   -- Navigation
   use { -- A file explorer tree for neovim written in lua
