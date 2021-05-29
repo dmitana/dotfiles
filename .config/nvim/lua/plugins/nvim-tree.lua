@@ -12,6 +12,7 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
+-- Settings
 vim.g.nvim_tree_side = 'left'
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_ignore = { '.git' }
@@ -25,7 +26,6 @@ vim.g.nvim_tree_indent_markers = 1 -- Indent markers when folders are open
 vim.g.nvim_tree_hide_dotfiles = 1 -- This option hides files and folders starting with a dot `.`
 vim.g.nvim_tree_git_hl = 1 -- Will enable file highlight for git attributes (can be used without the icons).
 vim.g.nvim_tree_highlight_opened_files = 1 -- Will enable folder and file icon highlight for opened files/directories.
--- TODO: see other options
 vim.g.nvim_tree_root_folder_modifier = ':~' -- This is the default. See :help filename-modifiers for more options
 vim.g.nvim_tree_tab_open = 0 -- Will open the tree when entering a new tab and the tree was previously open
 vim.g.nvim_tree_width_allow_resize  = 1 -- Will resize the tree when opening a file
@@ -42,7 +42,13 @@ vim.g.nvim_tree_window_picker_exclude = {
   filetype = { 'packer', 'qf' },
   buftype = { 'terminal' }
 }
-vim.g.nvim_tree_special_files = { 'README.md', 'Makefile', 'MAKEFILE' } -- List of filenames that gets highlighted with NvimTreeSpecialFile
+-- List of filenames that gets highlighted with NvimTreeSpecialFile
+vim.g.nvim_tree_special_files = {
+  ["Cargo.toml"] = true,
+  Makefile = true,
+  ["README.md"] = true,
+  ["readme.md"] = true,
+}
 -- If 0, do not show the icons for one of 'git', 'folder', and 'files'
 -- 1 by default, notice that if 'files' is 1, it will only display
 -- if nvim-web-devicons is installed and on your runtimepath
@@ -71,15 +77,12 @@ vim.g.nvim_tree_icons = {
      symlink = "",
      symlink_open = "",
   },
-  -- TODO: change to icons used in LSP
   lsp = {
-    hint = "",
-    info = "",
-    warning = "",
-    error = "",
+    hint = "", -- Default is 
+    info = "", -- Default is 
+    warning = "", -- Default is 
+    error = "", -- Default is 
   }
 }
 
--- TODO: does not work, fix
--- " a list of groups can be found at `:help nvim_tree_highlight`
-vim.cmd('highlight NvimTreeFolderIcon guibg=blue')
+-- A list of groups can be found at `:help nvim_tree_highlight`
