@@ -25,11 +25,30 @@ return require('packer').startup(function(use)
   use { 'npxbr/gruvbox.nvim', requires = 'rktjmp/lush.nvim' } -- Lua port of the most famous vim colorscheme
   use 'folke/tokyonight.nvim' -- A clean, dark Neovim theme written in Lua
   use 'monsonjeremy/onedark.nvim' -- OneDark NeoVim theme written in Lua
+  use { -- A blazing fast and easy to configure neovim statusline plugin written in pure lua
+    'hoob3rt/lualine.nvim',
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
 
   -- Navigation
   use { -- A file explorer tree for neovim written in lua
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons'
   }
+  use { -- Find, Filter, Preview, Pick. All lua, all the time
+    'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' }
+  }
+
+  -- Git support
+  use { -- Git signs written in pure lua
+    'lewis6991/gitsigns.nvim',
+    requires = 'nvim-lua/plenary.nvim'
+  }
+  use { -- Magit for neovim
+    'TimUntersberger/neogit',
+    requires = 'nvim-lua/plenary.nvim'
+  }
+  use 'sindrets/diffview.nvim'
 
 end)
