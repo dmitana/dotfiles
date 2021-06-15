@@ -23,6 +23,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
@@ -35,6 +36,15 @@ local on_attach = function(client, bufnr)
   elseif client.resolved_capabilities.document_range_formatting then
       buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
   end
+
+  -- Configure LSP signature plugin
+  require'lsp_signature'.on_attach({
+    bind = true,
+    handler_opts = {
+      border = null
+    },
+    hint_enable = false
+  })
 end
 
 local nvim_lsp = require('lspconfig')
