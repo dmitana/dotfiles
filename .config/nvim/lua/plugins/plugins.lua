@@ -23,6 +23,11 @@ return require('packer').startup(function(use)
   use 'steelsojka/pears.nvim' -- Auto pair plugin for neovim
   use 'ray-x/lsp_signature.nvim' -- Lsp signature hint when you type
   use 'kosayoda/nvim-lightbulb' -- VSCode bulb for neovim's built-in LSP
+  use 'blackCauldron7/surround.nvim' -- A surround text object plugin for neovim written in lua
+  use { -- Highlight, list and search todo comments in your projects
+    'folke/todo-comments.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+  }
 
   -- Themes and styling
   use { 'npxbr/gruvbox.nvim', requires = 'rktjmp/lush.nvim' } -- Lua port of the most famous vim colorscheme
