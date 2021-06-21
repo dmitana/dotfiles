@@ -1,2 +1,2 @@
-require('plugins')
 require('general')
+require('plugins')

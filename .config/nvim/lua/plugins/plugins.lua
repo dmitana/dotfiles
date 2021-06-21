@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
   }
+  use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua' } -- Indent guides for Neovim
 
   -- Themes and styling
   use { 'npxbr/gruvbox.nvim', requires = 'rktjmp/lush.nvim' } -- Lua port of the most famous vim colorscheme
@@ -59,4 +60,9 @@ return require('packer').startup(function(use)
   }
   use 'sindrets/diffview.nvim'
 
+  -- Spelling
+  use 'kamykn/spelunker.vim' -- Improved vim spelling plugin (with camel case support)
+
+  -- General tools
+  use 'norcalli/nvim-colorizer.lua' -- The fastest Neovim colorizer
 end)
