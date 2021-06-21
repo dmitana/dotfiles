@@ -61,8 +61,13 @@ require('telescope').setup{
   }
 }
 
+local telescope = function(picker)
+    return string.format("<cmd> lua require('telescope.builtin').%s()<CR>", picker)
+end
+
 -- Keybindings
-vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<CR>', { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>ff', telescope('find_files'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>fg', telescope('live_grep'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>fb', telescope('buffers'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>fh', telescope('help_tags'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>ca', telescope('lsp_code_actions'), { noremap = true, silent = false })
