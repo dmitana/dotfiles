@@ -34,6 +34,11 @@ vim.cmd 'set hidden'
 -- Always show sign columns
 vim.cmd 'set signcolumn=yes'
 
+-- If this many milliseconds nothing is typed the swap file will be written to
+-- disk. Also used for the CursorHold autocommand event - used for
+-- nvim-lightbuld.
+vim.opt.updatetime = 1000
+
 -- Keybindings
 --
 -- Navigation in split windows
