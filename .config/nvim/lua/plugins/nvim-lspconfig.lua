@@ -25,17 +25,14 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-  -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
-      buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  elseif client.resolved_capabilities.document_range_formatting then
-      buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
-  end
+  -- Show diagnostics on hover
+  vim.cmd 'autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})'
 
   -- Configure LSP signature plugin
   require'lsp_signature'.on_attach({
@@ -49,12 +46,50 @@ end
 
 local nvim_lsp = require('lspconfig')
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'gopls' }
+-- Use a loop to conveniently call 'setup' on multiple servers with default
+-- configuration and map buffer local keybindings when the language server
+-- attaches
+local servers = { 'pyright', 'gopls', 'pylsp' }
 for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup{ on_attach = on_attach }
+    nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
+-- Pyright python LSP configuration
+nvim_lsp['pyright'].setup {
+  on_attach = on_attach,
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = 'strict'
+      }
+    }
+  }
+}
+
+-- Pylsp python LSP configuration
+-- Only pyright is used for keybindings (on_attach)
+nvim_lsp['pylsp'].setup {
+  settings = {
+    pylsp = {
+      plugins = {
+        -- Use only pydocstyle
+        pydocstyle = { enabled = true },
+        jedi_completion = { enabled = false },
+        jedi_definition = { enabled = false },
+        yapf = { enabled = false },
+        rope_completion = { enabled = false },
+        pylint = { enabled = false },
+        pyflakes = { enabled = false },
+        preload = { enabled = false },
+        mccabe = { enabled = false },
+        jedi_symbols = { enabled = false },
+        jedi_references = { enabled = false },
+      },
+      -- Use flake8 instead of pycodestyle
+      configurationSources = 'flake8'
+    }
+  }
+}
 
 -- Set custom diagnostic signs (the same as in `trouble.nvim` plugin)
 vim.fn.sign_define(
@@ -74,11 +109,9 @@ vim.fn.sign_define(
   {text = '', numhl = 'LspDiagnosticsDefaultHint'}
 )
 
--- Set custom prefix in diagnostics virtual text
+-- Disable diagnostics virtual text
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-      prefix = '',
-    },
+    virtual_text = false,
   }
 )
