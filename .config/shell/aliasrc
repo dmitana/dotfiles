@@ -56,5 +56,5 @@ alias \
   zshrc="$EDITOR $ZDOTDIR/.zshrc" \
   zshenv="$EDITOR $HOME/.zshenv" \
   aliasrc="$EDITOR $HOME/.config/shell/aliasrc" \
-  nvimrc="$EDITOR $HOME/.config/nvim/init.vim" \
+  nvimrc="$EDITOR $HOME/.config/nvim/init.lua" \
   awsmrc="$EDITOR $HOME/.config/awesome/rc.lua"
