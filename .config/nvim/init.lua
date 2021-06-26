@@ -1,2 +1,5 @@
-require('general')
+-- Enable 24-bit RGB color in the TUI
+vim.cmd 'set termguicolors'
+
 require('plugins')
+require('general')

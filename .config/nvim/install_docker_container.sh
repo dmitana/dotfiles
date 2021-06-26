@@ -1,14 +1,12 @@
 # Install dependecies (icu-devtools is needed for MPLS)
-apt update && apt install -y wget curl git icu-devtools silversearcher-ag
+apt update && apt install -y wget curl git icu-devtools silversearcher-ag g++
 
 # Import Existing vim Configuration
 mkdir -p ~/.config/nvim
-mkdir -p ~/.config/coc/ultisnips
-ln -s ~/.nvim/init.vim ~/.config/nvim/init.vim
+ln -s ~/.nvim/init.lua ~/.config/nvim/init.lua
+ln -s ~/.nvim/lua ~/.config/nvim/lua
 ln -s ~/.nvim/ftdetect ~/.config/nvim/ftdetect
 ln -s ~/.nvim/ftplugin ~/.config/nvim/ftplugin
-ln -s ~/.nvim/coc-settings.json ~/.config/nvim/coc-settings.json
-ln -s ~/.coc/ultisnips/python.snippets ~/.config/coc/ultisnips/python.snippets
 
 # Download and install the appimage, use the output-document option to rename it to nvim
 wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document ~/.config/nvim/nvim.appimage
@@ -23,8 +21,8 @@ cd ~/.config/nvim
 # Create a symbolic link to nvim binary
 ln -s ~/.config/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/nvim
 
-# Install the Vim-plug Plugin Manager
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# Install the Packer plugin manager
+git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # Install python3 if it doesn't exist
 if ! command -v python3 &> /dev/null
@@ -46,11 +44,16 @@ pip3 install pip --upgrade
 # Install the NeoVim Python module
 pip3 install neovim pynvim
 
-# Install Flake8 extensions
-pip3 install -r ~/.nvim/flake8_extensions.txt
-
 # Install nodejs if doesn't exist
 if ! command -v node &> /dev/null
 then
     curl -sL install-node.now.sh/lts | bash -s -- --yes
 fi
+
+# LSP installation
+# Python (pyright + pylsp)
+npm i -g pyright
+pip3 install -r ~/.nvim/requirements-pylsp.txt
+
+# Go (gopls)
+GO111MODULE=on go get golang.org/x/tools/gopls@latest
