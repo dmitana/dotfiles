@@ -14,6 +14,12 @@ return require('packer').startup(function(use)
     run = ':TSUpdate'
   }
 
+  -- Python
+  use { -- Generate Python docstring to your Python source code
+    'heavenshell/vim-pydocstring',
+    run = 'pip install doq'
+  }
+
   -- General coding support
   use { -- A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.
     'folke/trouble.nvim',
