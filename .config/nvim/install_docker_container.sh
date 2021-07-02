@@ -1,5 +1,9 @@
-# Install dependecies (icu-devtools is needed for MPLS)
-apt update && apt install -y wget curl git icu-devtools silversearcher-ag g++
+# Install dependecies
+apt update && apt install -y software-properties-common wget curl git g++
+
+# Intall ripgrep
+add-apt-repository -y ppa:x4121/ripgrep
+apt update && apt install -y ripgrep
 
 # Import Existing vim Configuration
 mkdir -p ~/.config/nvim

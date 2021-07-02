@@ -1,5 +1,5 @@
-# Install dependecies (icu is needed for MPLS)
-yay -S --noconfirm wget curl git icu the_silver_searcher g++
+# Install dependecies
+yay -S --noconfirm wget curl git ripgrep g++
 
 # Download and install the appimage, use the output-document option to rename it to nvim
 wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document nvim
