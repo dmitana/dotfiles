@@ -55,9 +55,13 @@ then
 fi
 
 # LSP installation
+#
 # Python (pyright + pylsp)
 npm i -g pyright
 pip3 install -r ~/.nvim/requirements-pylsp.txt
 
 # Go (gopls)
 GO111MODULE=on go get golang.org/x/tools/gopls@latest
+
+# JSON
+npm i -g vscode-langservers-extracted

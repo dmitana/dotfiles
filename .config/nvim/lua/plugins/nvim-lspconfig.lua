@@ -91,6 +91,17 @@ nvim_lsp['pylsp'].setup {
   }
 }
 
+nvim_lsp['jsonls'].setup {
+  on_attach = on_attach,
+  commands = {
+    Format = {
+      function()
+        vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+      end
+    }
+  }
+}
+
 -- Set custom diagnostic signs (the same as in `trouble.nvim` plugin)
 vim.fn.sign_define(
   'LspDiagnosticsSignError',
