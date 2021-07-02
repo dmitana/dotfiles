@@ -38,6 +38,11 @@ return require('packer').startup(function(use)
     requires = 'nvim-lua/plenary.nvim',
   }
   use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua' } -- Indent guides for Neovim
+  use 'akinsho/nvim-toggleterm.lua' -- A neovim lua plugin to help easily manage multiple terminal windows
+  use { -- Easy management of a toolwindow.
+    'ethanjwright/toolwindow.nvim',
+    requires = { 'folke/trouble.nvim', 'akinsho/nvim-toggleterm.lua' },
+  }
 
   -- Themes and styling
   use { 'npxbr/gruvbox.nvim', requires = 'rktjmp/lush.nvim' } -- Lua port of the most famous vim colorscheme

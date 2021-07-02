@@ -58,3 +58,7 @@ vim.api.nvim_set_keymap('', '<Leader>y', '"*y', { noremap = true, silent = false
 vim.api.nvim_set_keymap('', '<Leader>p', '"*p', { noremap = true, silent = false })
 vim.api.nvim_set_keymap('', '<Leader>Y', '"+y', { noremap = true, silent = false })
 vim.api.nvim_set_keymap('', '<Leader>P', '"+p', { noremap = true, silent = false })
+
+-- Terminal
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = false })
+vim.api.nvim_set_keymap('t', '<C-[>', '<C-\\><C-n>', { noremap = true, silent = false })
