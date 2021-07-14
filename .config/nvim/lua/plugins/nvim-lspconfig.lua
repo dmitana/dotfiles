@@ -72,8 +72,7 @@ nvim_lsp['pylsp'].setup {
   settings = {
     pylsp = {
       plugins = {
-        -- Use only pydocstyle
-        pydocstyle = { enabled = true },
+        pydocstyle = { enabled = false },
         jedi_completion = { enabled = false },
         jedi_definition = { enabled = false },
         yapf = { enabled = false },
