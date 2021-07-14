@@ -16,6 +16,7 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  use 'ntpeters/vim-better-whitespace' -- Better whitespace highlighting for Vim
 
   -- Python
   use { -- Generate Python docstring to your Python source code
