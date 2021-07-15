@@ -38,7 +38,7 @@ return require('packer').startup(function(use)
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
   }
-  use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua' } -- Indent guides for Neovim
+  use 'lukas-reineke/indent-blankline.nvim' -- Indent guides for Neovim
   use 'akinsho/nvim-toggleterm.lua' -- A neovim lua plugin to help easily manage multiple terminal windows
   use { -- Easy management of a toolwindow.
     'ethanjwright/toolwindow.nvim',
