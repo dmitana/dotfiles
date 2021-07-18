@@ -44,6 +44,7 @@ return require('packer').startup(function(use)
     'ethanjwright/toolwindow.nvim',
     requires = { 'folke/trouble.nvim', 'akinsho/nvim-toggleterm.lua' },
   }
+  use 'andymass/vim-matchup' -- Vim match-up: even better % navigate and highlight matching words
 
   -- Themes and styling
   use { 'npxbr/gruvbox.nvim', requires = 'rktjmp/lush.nvim' } -- Lua port of the most famous vim colorscheme
@@ -80,4 +81,6 @@ return require('packer').startup(function(use)
 
   -- General tools
   use 'norcalli/nvim-colorizer.lua' -- The fastest Neovim colorizer
+  use 'tweekmonster/startuptime.vim' -- Breakdown Vim's --startuptime output
+  use 'karb94/neoscroll.nvim' -- Smooth scrolling neovim plugin written in lua
 end)

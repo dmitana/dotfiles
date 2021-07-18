@@ -42,3 +42,4 @@ require('plugins.spelunker')
 
 -- General tools
 require('plugins.nvim-colorizer')
+require('plugins.neoscroll')
