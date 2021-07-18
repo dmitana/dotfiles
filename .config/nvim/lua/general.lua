@@ -27,9 +27,14 @@ vim.cmd 'set showtabline=2'
 -- Show cursor line
 vim.wo.cursorline = true
 
--- Hybrid (number + relative) line numbers
-vim.wo.number = true
-vim.wo.relativenumber = true
+-- Set relative number on focus and norelative number when lost focus
+vim.cmd [[
+  augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * if !(&ft ==? "NvimTree") | set number relativenumber | endif
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  augroup END
+]]
 
 -- Enable to leave a buffer with unsaved changes
 vim.cmd 'set hidden'
