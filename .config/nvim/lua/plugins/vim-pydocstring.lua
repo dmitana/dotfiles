@@ -1,4 +1,4 @@
-vim.g.pydocstring_formatter = 'sphinx'
+vim.g.pydocstring_formatter = 'google'
 vim.g.pydocstring_doq_path = 'doq'
 vim.g.pydocstring_enable_mapping = false
 
