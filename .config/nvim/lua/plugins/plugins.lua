@@ -24,6 +24,14 @@ return require('packer').startup(function(use)
     run = 'pip install doq'
   }
 
+  -- Markdown
+  use { -- Markdown preview plugin for (neo)vim
+    'iamcco/markdown-preview.nvim',
+    run = function() vim.fn['mkdp#util#install']() end,
+    ft = {'markdown'},
+    cmd = 'MarkdownPreview'
+  }
+
   -- General coding support
   use { -- A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.
     'folke/trouble.nvim',
