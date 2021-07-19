@@ -2,8 +2,9 @@
 apt update && apt install -y software-properties-common wget curl git g++
 
 # Intall ripgrep
-add-apt-repository -y ppa:x4121/ripgrep
-apt update && apt install -y ripgrep
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+dpkg -i ripgrep_13.0.0_amd64.deb
+rm -f ripgrep_13.0.0_amd64.deb
 
 # Import Existing vim Configuration
 mkdir -p ~/.config/nvim
