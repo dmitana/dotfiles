@@ -87,6 +87,21 @@ return require('packer').startup(function(use)
   -- Spelling
   use 'kamykn/spelunker.vim' -- Improved vim spelling plugin (with camel case support)
 
+  -- Debugging
+  use 'mfussenegger/nvim-dap' -- Debug Adapter Protocol client implementation for Neovim
+  use 'mfussenegger/nvim-dap-python' -- An extension for nvim-dap, providing default configurations for python and methods to debug individual test methods or classes.
+  use 'theHamsta/nvim-dap-virtual-text' -- Virtual text support for nvim-dap
+  use 'rcarriga/nvim-dap-ui' -- A UI for nvim-dap
+  use 'nvim-telescope/telescope-dap.nvim' -- Integration for nvim-dap with telescope.nvim
+
+  -- Testing
+  use { -- The ultimate testing plugin for (Neo)Vim
+    'rcarriga/vim-ultest',
+    requires = { 'vim-test/vim-test' },
+    run = ':UpdateRemotePlugins'
+  }
+
+
   -- General tools
   use 'norcalli/nvim-colorizer.lua' -- The fastest Neovim colorizer
   use 'tweekmonster/startuptime.vim' -- Breakdown Vim's --startuptime output

@@ -40,6 +40,13 @@ require('plugins.diffview')
 -- Spelling
 require('plugins.spelunker')
 
+-- Debugging
+require('plugins.nvim-dap')
+require('plugins.nvim-dap-ui')
+
+-- Testing
+require('plugins.vim-ultest')
+
 -- General tools
 require('plugins.nvim-colorizer')
 require('plugins.neoscroll')

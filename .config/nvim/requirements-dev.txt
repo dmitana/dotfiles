@@ -1,9 +1,13 @@
+# Python neovim
+neovim
+# Pylsp requirements
 python-lsp-server[all]
 python-lsp-black
 pyls-flake8
 pyls-isort
 isort
 flake8
+# Flake8 extensions
 flake8-docstrings
 flake8-assertive
 flake8-bugbear
@@ -30,3 +34,5 @@ flake8-pytest
 flake8-test-name
 flake8-typing-imports
 typing-extensions
+# An implementation of the Debug Adapter Protocol for Python
+debugpy

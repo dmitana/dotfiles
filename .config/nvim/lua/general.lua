@@ -29,9 +29,10 @@ vim.wo.cursorline = true
 
 -- Set relative number on focus and norelative number when lost focus
 vim.cmd [[
+  let g:buffers = ["NvimTree", "toggleterm", "Trouble", "dapui_watches", "dapui_stacks", "dapui_scopes", "dapui_breakpoints"]
   augroup numbertoggle
     autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * if !(&ft ==? "NvimTree") | set number relativenumber | endif
+    autocmd BufEnter,FocusGained,InsertLeave * if index(g:buffers, &ft) < 0 | set number relativenumber | endif
     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
   augroup END
 ]]
