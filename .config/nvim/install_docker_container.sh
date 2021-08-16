@@ -59,7 +59,7 @@ fi
 #
 # Python (pyright + pylsp)
 npm i -g pyright
-pip3 install -r ~/.nvim/requirements-pylsp.txt
+pip3 install -r ~/.nvim/requirements-dev.txt
 
 # Go (gopls)
 GO111MODULE=on go get golang.org/x/tools/gopls@latest
