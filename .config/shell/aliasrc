@@ -35,7 +35,10 @@ alias \
   gpr="git pull --rebase" \
   gl="git log" \
   ga="git add" \
-  gb="git branch"
+  gb="git branch" \
+  gch="git checkout" \
+  gr="git rebase" \
+  gsh="git stash"
 
 # Dots
 alias \
@@ -49,7 +52,10 @@ alias \
   dtpr="dots pull --rebase" \
   dtl="dots log" \
   dta="dots add" \
-  dtb="dots branch"
+  dtb="dots branch" \
+  dtch="dots checkout" \
+  dtr="dots rebase" \
+  dtsh="dots stash"
 
 # Quick access
 alias \
