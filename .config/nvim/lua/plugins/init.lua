@@ -31,6 +31,7 @@ require('plugins.lualine')
 -- Navigation
 require('plugins.nvim-tree')
 require('plugins.telescope')
+require('plugins.nvim-gps')
 
 -- Git support
 require('plugins.gitsigns')

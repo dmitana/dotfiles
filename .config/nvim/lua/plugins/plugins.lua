@@ -16,6 +16,8 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  use 'nvim-treesitter/nvim-treesitter-refactor' -- Refactor module for nvim-treesitter
+  use 'JoosepAlviste/nvim-ts-context-commentstring' -- Neovim treesitter plugin for setting the commentstring based on the cursor location in a file
   use 'ntpeters/vim-better-whitespace' -- Better whitespace highlighting for Vim
 
   -- Python
@@ -71,6 +73,10 @@ return require('packer').startup(function(use)
   use { -- Find, Filter, Preview, Pick. All lua, all the time
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' }
+  }
+  use { -- Simple statusline component that shows what scope you are working inside
+    'SmiteshP/nvim-gps',
+    requires = 'nvim-treesitter/nvim-treesitter'
   }
 
   -- Git support

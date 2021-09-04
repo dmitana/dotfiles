@@ -1,9 +1,12 @@
 require'nvim-treesitter.configs'.setup {
   -- Ensure that these language parsers are installed
   ensure_installed = {
-    "python",
-    "json",
-    "lua"
+    'python',
+    'json',
+    'lua',
+    'html',
+    'css',
+    'javascript',
   },
 
   -- Modules
@@ -14,16 +17,27 @@ require'nvim-treesitter.configs'.setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
+      init_selection = 'gnn',
+      node_incremental = 'grn',
+      scope_incremental = 'grc',
+      node_decremental = 'grm',
     },
   },
-  indent = {
-    enable = true
+  indent = { enable = true },
+  matchup = { enable = true },
+  refactor = {
+    highlight_definitions = { enable = true },
+    highlight_current_scope = { enable = true },
+    navigation = {
+      enable = true,
+      keymaps = {
+        goto_next_usage = 'gnu',
+        goto_previous_usage = 'gpu'
+      }
+    }
   },
-  matchup = {
-    enable = true
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
   }
 }
