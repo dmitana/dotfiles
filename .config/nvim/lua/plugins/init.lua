@@ -5,7 +5,7 @@ require('plugins.plugins')
 require('plugins.nvim-lspconfig')
 
 -- Autocompletion
-require('plugins.nvim-compe')
+require('plugins.nvim-cmp')
 
 -- Syntax highlighting
 require('plugins.nvim-treesitter')

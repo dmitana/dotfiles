@@ -9,7 +9,20 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig' -- Quickstart configurations for the Nvim LSP client
 
   -- Autocompletion
-  use 'hrsh7th/nvim-compe' -- Auto completion plugin for nvim that written in Lua
+  -- use 'hrsh7th/nvim-compe' -- Auto completion plugin for nvim that written in Lua
+  use {
+    'hrsh7th/nvim-cmp', -- A completion plugin for neovim coded in Lua
+    requires = {
+      'hrsh7th/cmp-nvim-lsp', -- nvim-cmp source for neovim builtin LSP client
+      'hrsh7th/cmp-nvim-lua', -- nvim-cmp source for nvim lua
+      'hrsh7th/cmp-path', -- nvim-cmp source for path
+      'hrsh7th/cmp-buffer', -- nvim-cmp source for buffer words
+      'hrsh7th/cmp-calc', -- nvim-cmp source for math calculation
+      'onsails/lspkind-nvim' -- vscode-like pictograms for neovim lsp completion items
+      -- 'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
+      -- 'L3MON4D3/LuaSnip', -- Snippets plugin
+    }
+  }
 
   -- Syntax highlighting
   use { -- Nvim Treesitter configurations and abstraction layer
