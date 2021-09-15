@@ -18,9 +18,10 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-path', -- nvim-cmp source for path
       'hrsh7th/cmp-buffer', -- nvim-cmp source for buffer words
       'hrsh7th/cmp-calc', -- nvim-cmp source for math calculation
-      'onsails/lspkind-nvim' -- vscode-like pictograms for neovim lsp completion items
-      -- 'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
-      -- 'L3MON4D3/LuaSnip', -- Snippets plugin
+      'onsails/lspkind-nvim', -- vscode-like pictograms for neovim lsp completion items
+      'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
+      'L3MON4D3/LuaSnip', -- Snippets plugin
+      'rafamadriz/friendly-snippets',
     }
   }
 
@@ -119,7 +120,6 @@ return require('packer').startup(function(use)
     requires = { 'vim-test/vim-test' },
     run = ':UpdateRemotePlugins'
   }
-
 
   -- General tools
   use 'norcalli/nvim-colorizer.lua' -- The fastest Neovim colorizer
