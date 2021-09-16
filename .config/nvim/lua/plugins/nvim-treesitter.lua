@@ -41,3 +41,8 @@ require'nvim-treesitter.configs'.setup {
     enable_autocmd = false,
   }
 }
+
+-- Set folding
+vim.opt.foldenable = false
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
