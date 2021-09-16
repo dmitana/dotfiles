@@ -7,22 +7,22 @@ vim.cmd 'filetype plugin indent on'
 vim.cmd 'syntax on'
 
 -- Enable 24-bit RGB color in the TUI
-vim.cmd 'set termguicolors'
+vim.opt.termguicolors = true
 
 -- Enable the colorscheme
 vim.cmd 'colorscheme onedark'
 
 -- Access system clipboard in VIM
-vim.cmd 'set clipboard=unnamed'
+vim.opt.clipboard = 'unnamed'
 
 -- Turn off search highlighting
-vim.cmd 'set nohlsearch'
+vim.opt.hlsearch = false
 
 -- Ignore case in search patterns (case insensitive search)
 vim.opt.ignorecase = true
 
 -- Show tab line even if only one file is open
-vim.cmd 'set showtabline=2'
+vim.opt.showtabline = 2
 
 -- Show cursor line
 vim.wo.cursorline = true
@@ -38,10 +38,10 @@ vim.cmd [[
 ]]
 
 -- Enable to leave a buffer with unsaved changes
-vim.cmd 'set hidden'
+vim.opt.hidden = true
 
 -- Always show sign columns
-vim.cmd 'set signcolumn=yes'
+vim.opt.signcolumn = 'yes'
 
 -- If this many milliseconds nothing is typed the swap file will be written to
 -- disk. Also used for the CursorHold autocommand event - used for
