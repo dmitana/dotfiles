@@ -21,12 +21,12 @@ require('telescope').setup{
     layout_config = {
       width = 0.75,
       prompt_position = 'bottom',
-      preview_cutoff = 120,
       horizontal = {
         mirror = false,
       },
       vertical = {
         mirror = false,
+        preview_cutoff = 50,
       },
       flex = {
         flip_columns = 130,
