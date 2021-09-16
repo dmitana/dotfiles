@@ -17,7 +17,7 @@ require('plugins.vim-pydocstring')
 -- General coding support
 require('plugins.trouble')
 require('plugins.kommentary')
-require('plugins.pears')
+require('plugins.pear-tree')
 require('plugins.nvim-lightbulb')
 require('plugins.surround')
 require('plugins.todo-comments')

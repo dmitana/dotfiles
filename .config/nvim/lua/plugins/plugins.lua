@@ -54,7 +54,7 @@ return require('packer').startup(function(use)
     requires = 'kyazdani42/nvim-web-devicons'
   }
   use 'b3nj5m1n/kommentary' -- Neovim commenting plugin, written in lua
-  use 'steelsojka/pears.nvim' -- Auto pair plugin for neovim
+  use 'tmsvg/pear-tree' -- A Vim auto-pair plugin
   use 'ray-x/lsp_signature.nvim' -- Lsp signature hint when you type
   use 'kosayoda/nvim-lightbulb' -- VSCode bulb for neovim's built-in LSP
   use 'blackCauldron7/surround.nvim' -- A surround text object plugin for neovim written in lua
