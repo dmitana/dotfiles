@@ -51,12 +51,6 @@ vim.g.nvim_tree_icons = {
      empty_open = "",
      symlink = "",
      symlink_open = "",
-  },
-  lsp = {
-    hint = "", -- Default is 
-    info = "", -- Default is 
-    warning = "", -- Default is 
-    error = "", -- Default is 
   }
 }
 
@@ -84,8 +78,16 @@ require'nvim-tree'.setup {
   hijack_cursor = false,
   -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
   update_cwd = false,
-  -- show lsp diagnostics in the signcolumn
-  lsp_diagnostics = true,
+   -- show lsp diagnostics in the signcolumn
+  diagnostics = {
+    enable = true,
+    icons = {
+      hint = "", -- Default is 
+      info = "", -- Default is 
+      warning = "", -- Default is 
+      error = "", -- Default is 
+    }
+  },
   -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
   update_focused_file = {
     -- enables the feature
