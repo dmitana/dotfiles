@@ -14,7 +14,7 @@ ln -s ~/.nvim/ftdetect ~/.config/nvim/ftdetect
 ln -s ~/.nvim/ftplugin ~/.config/nvim/ftplugin
 
 # Download and install the appimage, use the output-document option to rename it to nvim
-wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document ~/.config/nvim/nvim.appimage
+wget --quiet https://github.com/neovim/neovim/releases/download/stable/nvim.appimage --output-document ~/.config/nvim/nvim.appimage
 
 # Set the owner to root, and make nvim accessible to all users
 chmod +x ~/.config/nvim/nvim.appimage
