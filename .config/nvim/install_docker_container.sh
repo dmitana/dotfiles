@@ -64,5 +64,8 @@ pip3 install -r ~/.nvim/requirements-dev.txt
 # Go (gopls)
 GO111MODULE=on go get golang.org/x/tools/gopls@latest
 
-# JSON
+# JSON, HTML and CSS (SCSS, LESS)
 npm i -g vscode-langservers-extracted
+
+# Typescript and Javascript
+npm i -g typescript typescript-language-server
