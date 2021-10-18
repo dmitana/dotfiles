@@ -125,4 +125,9 @@ return require('packer').startup(function(use)
   use 'norcalli/nvim-colorizer.lua' -- The fastest Neovim colorizer
   use 'tweekmonster/startuptime.vim' -- Breakdown Vim's --startuptime output
   use 'karb94/neoscroll.nvim' -- Smooth scrolling neovim plugin written in lua
+  use {
+    'abecodes/tabout.nvim', -- Tabout plugin for neovim
+    wants = { 'nvim-treesitter' },
+    after = { 'nvim-cmp' }
+  }
 end)

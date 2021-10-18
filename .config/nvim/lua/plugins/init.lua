@@ -52,3 +52,4 @@ require('plugins.vim-ultest')
 -- General tools
 require('plugins.nvim-colorizer')
 require('plugins.neoscroll')
+require('plugins.tabout')
