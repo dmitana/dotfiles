@@ -33,7 +33,9 @@ require('telescope').setup{
       }
     },
     file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_ignore_patterns = {},
+    file_ignore_patterns = {
+      '^.git/'
+    },
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     winblend = 0,
     border = {},
@@ -64,7 +66,7 @@ local telescope = function(picker)
 end
 
 -- Keybindings
-vim.api.nvim_set_keymap('n', '<leader>ff', telescope('find_files'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>ff', telescope('find_files({ hidden = true })'), { noremap = true, silent = false })
 vim.api.nvim_set_keymap('n', '<leader>fg', telescope('live_grep'), { noremap = true, silent = false })
 vim.api.nvim_set_keymap('n', '<leader>fb', telescope('buffers'), { noremap = true, silent = false })
 vim.api.nvim_set_keymap('n', '<leader>fh', telescope('help_tags'), { noremap = true, silent = false })
