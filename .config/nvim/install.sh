@@ -1,15 +1,8 @@
 # Install dependecies
 yay -S --noconfirm wget curl git ripgrep g++
 
-# Download and install the appimage, use the output-document option to rename it to nvim
-wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document nvim
-
-# Set the owner to root, and make nvim accessible to all users
-chmod +x nvim
-sudo chown root:root nvim
-
-# Move the binary file to /usr/local/bin
-sudo mv nvim /usr/local/bin
+# Install neovim
+yay -S --noconfirm neovim
 
 # Install the Packer plugin manager
 git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
