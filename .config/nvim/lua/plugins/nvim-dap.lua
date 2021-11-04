@@ -2,9 +2,6 @@
 require('dap')
 vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
 
--- Nvim DAP virtual text configuration
-vim.g.dap_virtual_text = 'all frames'
-
 -- DAP telescope extension
 require('telescope').load_extension('dap')
 

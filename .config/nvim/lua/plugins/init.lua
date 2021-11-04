@@ -44,6 +44,7 @@ require('plugins.spelunker')
 
 -- Debugging
 require('plugins.nvim-dap')
+require('plugins.nvim-dap-virtual-text')
 require('plugins.nvim-dap-ui')
 
 -- Testing
