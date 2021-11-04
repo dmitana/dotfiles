@@ -4,5 +4,5 @@ if vim.loop.fs_stat(local_vimrc) then
   dofile(local_vimrc)
   print(local_vimrc .. ' loaded.')
 else
-  print(local_vimrc .. ' exists but is not loaded.')
+  print(local_vimrc .. ' does not exist.')
 end
