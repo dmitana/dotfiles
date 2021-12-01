@@ -1,5 +1,4 @@
 -- Non setup settings (should be set BEFORE running the setup function)
-vim.g.nvim_tree_gitignore = 1
 vim.g.nvim_tree_quit_on_open = 0 -- Closes the tree when you open a file
 vim.g.nvim_tree_indent_markers = 1 -- Indent markers when folders are open
 vim.g.nvim_tree_git_hl = 1 -- Will enable file highlight for git attributes (can be used without the icons).
@@ -107,6 +106,11 @@ require'nvim-tree'.setup {
   filters = {
     dotfiles = false,
     custom = { '.git' }
+  },
+  git = {
+    enable = true,
+    ignore = true,
+    timeout = 500,
   },
   view = {
     -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
