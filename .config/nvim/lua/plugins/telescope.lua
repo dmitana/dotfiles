@@ -62,14 +62,14 @@ require('telescope').setup{
 }
 
 local telescope = function(picker)
-    return string.format("<cmd> lua require('telescope.builtin').%s()<CR>", picker)
+    return string.format("<cmd> lua require('telescope.builtin').%s<CR>", picker)
 end
 
 -- Keybindings
 vim.api.nvim_set_keymap('n', '<leader>ff', telescope('find_files({ hidden = true })'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>fg', telescope('live_grep'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>fb', telescope('buffers'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>fh', telescope('help_tags'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>gc', telescope('git_commits'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>gb', telescope('git_branches'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>tb', telescope('builtin'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>fg', telescope('live_grep()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>fb', telescope('buffers()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>fh', telescope('help_tags()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>gc', telescope('git_commits()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>gb', telescope('git_branches()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>tb', telescope('builtin()'), { noremap = true, silent = false })
