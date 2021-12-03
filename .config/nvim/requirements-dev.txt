@@ -36,3 +36,5 @@ flake8-typing-imports
 typing-extensions
 # An implementation of the Debug Adapter Protocol for Python
 debugpy
+# Pydocstring
+doq
