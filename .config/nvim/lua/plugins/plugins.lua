@@ -40,6 +40,12 @@ return require('packer').startup(function(use)
     run = 'pip install doq'
   }
 
+  -- Javascript / Typescript
+  use { -- Generate JSDoc to your JavaScript code.
+    'heavenshell/vim-jsdoc',
+    run = 'make install'
+  }
+
   -- Markdown
   use { -- Markdown preview plugin for (neo)vim
     'iamcco/markdown-preview.nvim',

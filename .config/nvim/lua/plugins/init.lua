@@ -14,6 +14,9 @@ require('plugins.nvim-treesitter')
 -- Python
 require('plugins.vim-pydocstring')
 
+-- Javascript / Typescript
+require('plugins.vim-jsdoc')
+
 -- General coding support
 require('plugins.trouble')
 require('plugins.kommentary')
