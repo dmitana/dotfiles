@@ -84,6 +84,7 @@ return require('packer').startup(function(use)
     'hoob3rt/lualine.nvim',
     requires = 'kyazdani42/nvim-web-devicons'
   }
+  use 'mhartington/formatter.nvim' -- A format runner for neovim, written in lua
 
   -- Navigation
   use { -- A file explorer tree for neovim written in lua

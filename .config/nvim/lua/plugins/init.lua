@@ -27,6 +27,7 @@ require('plugins.todo-comments')
 require('plugins.indent-blankline')
 require('plugins.nvim-toggleterm')
 require('plugins.toolwindow')
+require('plugins.formatter')
 
 -- Themes and styling
 require('plugins.themes')
