@@ -76,7 +76,7 @@ local nvim_lsp = require('lspconfig')
 -- Use a loop to conveniently call 'setup' on multiple servers with default
 -- configuration and map buffer local keybindings when the language server
 -- attaches
-local servers = { 'pyright', 'gopls', 'pylsp', 'html', 'cssls', 'tsserver' }
+local servers = { 'pyright', 'gopls', 'pylsp', 'html', 'cssls', 'tsserver', 'eslint' }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
@@ -87,6 +87,7 @@ end
 -- Pyright python LSP configuration
 nvim_lsp['pyright'].setup {
   on_attach = on_attach,
+  capabilities = capabilities,
   settings = {
     python = {
       analysis = {
@@ -99,6 +100,7 @@ nvim_lsp['pyright'].setup {
 -- Pylsp python LSP configuration
 -- Only pyright is used for keybindings (on_attach)
 nvim_lsp['pylsp'].setup {
+  capabilities = capabilities,
   settings = {
     pylsp = {
       plugins = {
@@ -122,6 +124,7 @@ nvim_lsp['pylsp'].setup {
 
 nvim_lsp['jsonls'].setup {
   on_attach = on_attach,
+  capabilities = capabilities,
   commands = {
     Format = {
       function()
