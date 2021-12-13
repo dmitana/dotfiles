@@ -1,7 +1,7 @@
 # Python neovim
 neovim
 # Pylsp requirements
-python-lsp-server[all]
+python-lsp-server
 python-lsp-black
 pyls-flake8
 pyls-isort
