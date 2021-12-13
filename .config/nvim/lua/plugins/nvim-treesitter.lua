@@ -8,6 +8,7 @@ require'nvim-treesitter.configs'.setup {
     'css',
     'javascript',
     'typescript',
+    'comment',
   },
 
   -- Modules
