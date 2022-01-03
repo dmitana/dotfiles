@@ -15,7 +15,7 @@ require'lualine'.setup {
       'filename',
       {
         'diagnostics',
-        sources = { 'nvim_lsp' }
+        sources = { 'nvim_diagnostic' }
       },
       {
         gps.get_location,
