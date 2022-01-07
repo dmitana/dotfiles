@@ -1,0 +1,11 @@
+# Python neovim
+neovim
+# Pylsp requirements
+python-lsp-server
+python-lsp-black
+pyls-flake8
+pyls-isort
+# An implementation of the Debug Adapter Protocol for Python
+debugpy
+# Pydocstring
+doq

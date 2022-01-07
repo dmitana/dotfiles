@@ -1,34 +1,26 @@
-# Install dependecies (icu is needed for MPLS)
-yay -S --noconfirm wget curl git icu the_silver_searcher
+# Install dependecies
+yay -S --noconfirm wget curl git ripgrep g++
 
-# Import Existing vim Configuration
-# mkdir -p ~/.config/nvim
-# mkdir -p ~/.config/coc/ultisnips
-# ln -s ~/.nvim/init.vim ~/.config/nvim/init.vim
-# ln -s ~/.nvim/coc-settings.json ~/.config/nvim/coc-settings.json
-# ln -s ~/.nvim/coc/ultisnips/python.snippets ~/.config/coc/ultisnips/python.snippets
+# Install neovim
+yay -S --noconfirm neovim
 
-# Download and install the appimage, use the output-document option to rename it to nvim
-wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document nvim
+# Install the Packer plugin manager
+git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-# Set the owner to root, and make nvim accessible to all users
-chmod +x nvim
-sudo chown root:root nvim
-
-# Move the binary file to /usr/local/bin
-sudo mv nvim /usr/local/bin
-
-# Install the Vim-plug Plugin Manager
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-# Install python3 if doesn't exist
+# Install python3 if it doesn't exist
 if ! command -v python3 &> /dev/null
 then
     yay -S --noconfirm python3 python3-distutils
+fi
+
+# Install pip3 if it doesn't exist
+if ! command -v pip3 &> /dev/null
+then
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     python3 get-pip.py
     rm get-pip.py
 fi
+
 # Upgrade pip
 pip3 install pip --upgrade
 
@@ -40,3 +32,18 @@ if ! command -v node &> /dev/null
 then
     yay -S --noconfirm nodejs-lts-erbium npm
 fi
+
+# LSP installation
+#
+# Python (pyright + pylsp)
+sudo npm i -g pyright
+pip3 install --user -r ~/.config/nvim/requirements-dev.txt
+
+# Go (gopls)
+GO111MODULE=on go get golang.org/x/tools/gopls@latest
+
+# Eslint (JS, JS), JSON, HTML and CSS (SCSS, LESS)
+sudo npm i -g vscode-langservers-extracted
+
+# Typescript and Javascript
+sudo npm i -g typescript typescript-language-server

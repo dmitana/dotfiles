@@ -53,11 +53,14 @@ beautiful.init("~/.config/awesome/theme/theme.lua")
 terminal = "kitty"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
-browser = "google-chrome-stable"
 
 -- Definitions of used programs
+browser = "google-chrome-stable"
+firefox = "firefox"
+email = "thunderbird"
 whatsapp = "whatsapp-nativefier"
 slack = "slack"
+pidgin = "pidgin"
 gui_file_manager = "thunar"
 
 -- Default modkey.
@@ -281,11 +284,17 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey, "Shift"   }, "e", function () awful.spawn(gui_file_manager) end,
               {description = "open a GUI file manager", group = "launcher"}),
     awful.key({ modkey,           }, "F1", function () awful.spawn(browser) end,
-              {description = "open a browser", group = "launcher"}),
+              {description = "open browser", group = "launcher"}),
+    awful.key({ modkey,           }, "F2", function () awful.spawn(firefox) end,
+              {description = "open firefox", group = "launcher"}),
     awful.key({ modkey,           }, "F5", function () awful.spawn(whatsapp) end,
-              {description = "open the whatsapp", group = "launcher"}),
+              {description = "open whatsapp", group = "launcher"}),
     awful.key({ modkey,           }, "F6", function () awful.spawn(slack) end,
-              {description = "open the slack", group = "launcher"}),
+              {description = "open slack", group = "launcher"}),
+    awful.key({ modkey,           }, "F7", function () awful.spawn(email) end,
+              {description = "open an email client", group = "launcher"}),
+    awful.key({ modkey,           }, "F8", function () awful.spawn(pidgin) end,
+              {description = "open pidgin", group = "launcher"}),
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
     --awful.key({ modkey }, "p", function() menubar.show() end,
@@ -726,3 +735,4 @@ awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("blueman-applet")
 awful.spawn.with_shell("xfce4-clipman")
 awful.spawn.with_shell("udiskie")
+awful.spawn.with_shell("prismatik")

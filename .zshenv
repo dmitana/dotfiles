@@ -3,7 +3,7 @@ export ZDOTDIR="$HOME/.config/zsh"
 
 # Set $PATH
 typeset -U PATH path
-path=("$HOME/.local/bin" $path)
+path=("$HOME/.local/bin" $(go env GOPATH)/bin $path)
 export PATH
 
 # Add zsh scripts to fpath

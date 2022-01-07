@@ -1,5 +1,0 @@
-flake8-assertive
-flake8-bugbear
-flake8-comprehensions
-flake8-unused-arguments
-flake8-builtins
