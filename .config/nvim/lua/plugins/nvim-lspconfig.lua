@@ -11,7 +11,7 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings
-  local opts = { noremap = true, silent = false }
+  local opts = { noremap = true, silent = true }
 
   local telescope = function(picker)
       return string.format("<cmd> lua require('telescope.builtin').%s()<CR>", picker)
@@ -33,14 +33,14 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', 'gr', telescope('lsp_references'), opts)
   buf_set_keymap('n', 'gw', telescope('lsp_document_symbols'), opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float({focusable = false})<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float({ focus = false, focusable = true })<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
   -- Show diagnostics on hover
-  vim.cmd 'autocmd CursorHold <buffer> lua vim.diagnostic.open_float({focusable = false})'
+  vim.cmd 'autocmd CursorHold <buffer> lua vim.diagnostic.open_float({ focus = false, focusable = true })'
 
   -- Configure LSP signature plugin
   require'lsp_signature'.on_attach({
@@ -70,6 +70,9 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     'additionalTextEdits',
   },
 }
+
+-- Helper no operation function for disabling some textDocument handlers in given clients
+local noop = function() return {} end
 
 local nvim_lsp = require('lspconfig')
 
@@ -101,6 +104,11 @@ nvim_lsp['pyright'].setup {
 -- Only pyright is used for keybindings (on_attach)
 nvim_lsp['pylsp'].setup {
   capabilities = capabilities,
+  handlers = {
+    ['textDocument/hover'] = noop,
+    ['textDocument/signatureHelp'] = noop,
+    ['textDocument/rename'] = noop,
+  },
   settings = {
     pylsp = {
       plugins = {
@@ -133,6 +141,10 @@ nvim_lsp['jsonls'].setup {
     }
   }
 }
+
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+--   vim.lsp.handlers.hover, { focusable = false }
+-- )
 
 -- Diagnostics config
 vim.diagnostic.config({
