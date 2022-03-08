@@ -1,16 +1,10 @@
 -- Non setup settings (should be set BEFORE running the setup function)
-vim.g.nvim_tree_quit_on_open = 0 -- Closes the tree when you open a file
 vim.g.nvim_tree_indent_markers = 1 -- Indent markers when folders are open
 vim.g.nvim_tree_git_hl = 1 -- Will enable file highlight for git attributes (can be used without the icons).
 vim.g.nvim_tree_highlight_opened_files = 1 -- Will enable folder and file icon highlight for opened files/directories.
 vim.g.nvim_tree_root_folder_modifier = ':~' -- This is the default. See :help filename-modifiers for more options
 vim.g.nvim_tree_add_trailing = 1 -- Append a trailing slash to folder names
 vim.g.nvim_tree_group_empty = 1 -- Compact folders that only contain a single folder into one node in the file tree
-vim.g.nvim_tree_disable_window_picker = 1 -- Will disable the window picker.
-vim.g.nvim_tree_window_picker_exclude = {
-  filetype = { 'packer', 'qf' },
-  buftype = { 'terminal' }
-}
 -- Dictionary of buffer option names mapped to a list of option values that
 -- indicates to the window picker that the buffer's window should not be
 -- selectable.
@@ -127,6 +121,24 @@ require'nvim-tree'.setup {
       custom_only = false,
       -- list of mappings to set on the tree manually
       list = {}
+    }
+  },
+  actions = {
+    change_dir = {
+      enable = true,
+      global = false,
+    },
+    open_file = {
+      quit_on_open = false,
+      resize_window = false,
+      window_picker = {
+        enable = false,
+        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+        exclude = {
+          filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame", },
+          buftype  = { "nofile", "terminal", "help", },
+        }
+      }
     }
   },
   tab_open = false,
