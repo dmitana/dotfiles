@@ -52,7 +52,8 @@ require('plugins.nvim-dap-virtual-text')
 require('plugins.nvim-dap-ui')
 
 -- Testing
-require('plugins.vim-ultest')
+-- require('plugins.vim-ultest')
+require('plugins.neotest')
 
 -- General tools
 require('plugins.nvim-colorizer')

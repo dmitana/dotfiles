@@ -69,7 +69,10 @@ return require('packer').startup(function(use)
     requires = 'nvim-lua/plenary.nvim',
   }
   use 'lukas-reineke/indent-blankline.nvim' -- Indent guides for Neovim
-  use 'akinsho/nvim-toggleterm.lua' -- A neovim lua plugin to help easily manage multiple terminal windows
+  use { -- A neovim lua plugin to help easily manage multiple terminal windows
+    'akinsho/nvim-toggleterm.lua',
+    tag = 'v2.*'
+  }
   use { -- Easy management of a toolwindow.
     'ethanjwright/toolwindow.nvim',
     requires = { 'folke/trouble.nvim', 'akinsho/nvim-toggleterm.lua' },
@@ -122,10 +125,17 @@ return require('packer').startup(function(use)
   use 'nvim-telescope/telescope-dap.nvim' -- Integration for nvim-dap with telescope.nvim
 
   -- Testing
-  use { -- The ultimate testing plugin for (Neo)Vim
-    'rcarriga/vim-ultest',
-    requires = { 'vim-test/vim-test' },
-    run = ':UpdateRemotePlugins'
+  use { -- An extensible framework for interacting with tests within NeoVim
+    'nvim-neotest/neotest',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-neotest/neotest-python',
+      'haydenmeade/neotest-jest',
+      'nvim-neotest/neotest-plenary',
+      'nvim-neotest/neotest-vim-test'
+    }
   }
 
   -- General tools
