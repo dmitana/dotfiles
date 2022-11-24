@@ -29,11 +29,14 @@ alias \
   g="git" \
   gst="git status" \
   gd="git diff" \
+  gdp="git diff ..origin/\$(git branch --show-current)" \
   gdc="git diff --cached" \
   gf="git fetch" \
   gp="git pull" \
   gpr="git pull --rebase" \
   gl="git log" \
+  glg="git log --all --oneline --graph --decorate" \
+  glp="git log ..origin/\$(git branch --show-current)" \
   ga="git add" \
   gb="git branch" \
   gch="git checkout" \
