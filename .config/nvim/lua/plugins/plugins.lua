@@ -82,7 +82,10 @@ return require('packer').startup(function(use)
   -- Themes and styling
   use { 'npxbr/gruvbox.nvim', requires = 'rktjmp/lush.nvim' } -- Lua port of the most famous vim colorscheme
   use 'folke/tokyonight.nvim' -- A clean, dark Neovim theme written in Lua
-  use 'monsonjeremy/onedark.nvim' -- OneDark NeoVim theme written in Lua
+  use { -- OneDark NeoVim theme written in Lua
+    'monsonjeremy/onedark.nvim',
+    branch = 'treesitter'
+  }
   use { -- A blazing fast and easy to configure neovim statusline plugin written in pure lua
     'hoob3rt/lualine.nvim',
     requires = 'kyazdani42/nvim-web-devicons'
