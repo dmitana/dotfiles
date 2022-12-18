@@ -60,6 +60,12 @@ alias \
   dtr="dots rebase" \
   dtsh="dots stash"
 
+# Docker
+alias \
+  d="docker" \
+  drd="docker rmi -f $(docker images -f "dangling=true" -q)" \
+  dc="docker-compose"
+
 # Quick access
 alias \
   zshrc="$EDITOR $ZDOTDIR/.zshrc" \
