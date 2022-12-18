@@ -63,7 +63,7 @@ return require('packer').startup(function(use)
   use 'tmsvg/pear-tree' -- A Vim auto-pair plugin
   use 'ray-x/lsp_signature.nvim' -- Lsp signature hint when you type
   use 'kosayoda/nvim-lightbulb' -- VSCode bulb for neovim's built-in LSP
-  use 'blackCauldron7/surround.nvim' -- A surround text object plugin for neovim written in lua
+  use 'machakann/vim-sandwich' -- Set of operators and textobjects to search/select/edit sandwiched texts
   use { -- Highlight, list and search todo comments in your projects
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
