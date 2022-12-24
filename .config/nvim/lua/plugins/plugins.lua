@@ -99,7 +99,11 @@ return require('packer').startup(function(use)
   }
   use { -- Find, Filter, Preview, Pick. All lua, all the time
     'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' }
+    requires = {
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-live-grep-args.nvim'
+    }
   }
   use { -- Simple statusline component that shows what scope you are working inside
     'SmiteshP/nvim-gps',

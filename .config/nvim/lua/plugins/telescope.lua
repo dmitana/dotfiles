@@ -1,6 +1,8 @@
 local actions = require('telescope.actions')
+local telescope = require('telescope')
+local lga_actions = require('telescope-live-grep-args.actions')
 
-require('telescope').setup{
+telescope.setup {
   defaults = {
     vimgrep_arguments = {
       'rg',
@@ -58,18 +60,32 @@ require('telescope').setup{
         ["<C-j>"] = actions.move_selection_next,
       },
     },
+  },
+  extensions = {
+    live_grep_args = {
+      auto_quoting = true, -- enable/disable auto-quoting
+      mappings = {
+        i = {
+          ["<C-g>"] = lga_actions.quote_prompt({ postfix = " --iglob **/" }),
+          ["<C-t>"] = lga_actions.quote_prompt({ postfix = " -t " }),
+        },
+      },
+    }
   }
 }
 
-local telescope = function(picker)
+telescope.load_extension('live_grep_args')
+
+local telescope_fn = function(picker)
     return string.format("<cmd> lua require('telescope.builtin').%s<CR>", picker)
 end
 
 -- Keybindings
-vim.api.nvim_set_keymap('n', '<leader>ff', telescope('find_files({ hidden = true })'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>fg', telescope('live_grep()'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>fb', telescope('buffers()'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>fh', telescope('help_tags()'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>gc', telescope('git_commits()'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>gb', telescope('git_branches()'), { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>tb', telescope('builtin()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>ff', telescope_fn('find_files({ hidden = true })'), { noremap = true, silent = false })
+-- vim.api.nvim_set_keymap('n', '<leader>fg', telescope_fn('live_grep()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd> lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>', { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>fb', telescope_fn('buffers()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>fh', telescope_fn('help_tags()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>gc', telescope_fn('git_commits()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>gb', telescope_fn('git_branches()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>tb', telescope_fn('builtin()'), { noremap = true, silent = false })
