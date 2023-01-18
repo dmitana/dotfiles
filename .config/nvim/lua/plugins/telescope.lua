@@ -21,7 +21,7 @@ telescope.setup {
     sorting_strategy = 'descending',
     layout_strategy = 'flex',
     layout_config = {
-      width = 0.75,
+      width = 0.95,
       prompt_position = 'bottom',
       horizontal = {
         mirror = false,
@@ -59,6 +59,12 @@ telescope.setup {
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-j>"] = actions.move_selection_next,
       },
+    },
+  },
+  pickers = {
+    lsp_references = {
+      fname_width = 50,
+      trim_text = true,
     },
   },
   extensions = {
