@@ -2,6 +2,7 @@ require('neotest').setup({
   adapters = {
     require('neotest-python')({
       dap = { justMyCode = false },
+      args = { '-vv' },
     }),
     require('neotest-jest')({
       -- jestCommand = "npm test --",
@@ -20,7 +21,11 @@ require('neotest').setup({
     enabled = true,
     signs = false,
     virtual_text = true,
-  }
+  },
+  quickfix = {
+    enabled = false,
+    open = false,
+  },
 })
 
 local opts = { noremap = true, silent = true}
