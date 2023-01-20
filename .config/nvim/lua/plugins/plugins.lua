@@ -99,8 +99,8 @@ return require('packer').startup(function(use)
   }
   use { -- Find, Filter, Preview, Pick. All lua, all the time
     'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
     requires = {
-      'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-live-grep-args.nvim'
     }
@@ -137,7 +137,7 @@ return require('packer').startup(function(use)
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
-      'antoinemadec/FixCursorHold.nvim',
+      -- 'antoinemadec/FixCursorHold.nvim',
       'nvim-neotest/neotest-python',
       'haydenmeade/neotest-jest',
       'nvim-neotest/neotest-plenary',
