@@ -63,8 +63,21 @@ alias \
 # Docker
 alias \
   d="docker" \
-  drd="docker rmi -f $(docker images -f "dangling=true" -q)" \
-  dc="docker-compose"
+  dps="d ps -a" \
+  dim="docker images -a" \
+  drm="docker rm" \
+  drmi="docker rmi" \
+  dv="docker volume" \
+  db="docker builder" \
+  drmd="docker rmi -f \$(docker images -f \"dangling=true\" -q)"
+
+# Docker compose
+alias \
+  dc="docker-compose" \
+  dcs="docker-compose start" \
+  dct="docker-compose stop" \
+  dcu="docker-compose up" \
+  dcd="docker-compose down"
 
 # Quick access
 alias \
