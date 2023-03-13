@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-refactor' -- Refactor module for nvim-treesitter
   use 'JoosepAlviste/nvim-ts-context-commentstring' -- Neovim treesitter plugin for setting the commentstring based on the cursor location in a file
   use 'ntpeters/vim-better-whitespace' -- Better whitespace highlighting for Vim
+  use 'nvim-treesitter/nvim-treesitter-textobjects' -- Syntax aware text-objects, select, move, swap, and peek support
 
   -- Python
   use { -- Generate Python docstring to your Python source code
