@@ -132,14 +132,7 @@ nvim_lsp['pylsp'].setup {
 nvim_lsp['jsonls'].setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  commands = {
-    -- FIXME: Deprecated
-    Format = {
-      function()
-        vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-      end
-    }
-  }
+  commands = { }
 }
 
 -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
