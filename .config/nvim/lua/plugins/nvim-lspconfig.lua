@@ -151,11 +151,11 @@ vim.diagnostic.config({
 -- Set custom diagnostic signs (the same as in `trouble.nvim` plugin)
 vim.fn.sign_define(
   'DiagnosticSignError',
-  {text = '', texthl = 'DiagnosticError', numhl = 'DiagnosticError'}
+  {text = '', texthl = 'DiagnosticError', numhl = 'DiagnosticError'}
 )
 vim.fn.sign_define(
   'DiagnosticSignWarn',
-  {text = '', texthl = 'DiagnosticWarn', numhl = 'DiagnosticWarn'}
+  {text = '', texthl = 'DiagnosticWarn', numhl = 'DiagnosticWarn'}
 )
 vim.fn.sign_define(
   'LspDiagnosticsSignInformation',
@@ -163,5 +163,5 @@ vim.fn.sign_define(
 )
 vim.fn.sign_define(
   'LspDiagnosticsSignHint',
-  {text = '', texthl = 'DiagnosticHint', numhl = 'DiagnosticHint'}
+  {text = '', texthl = 'DiagnosticHint', numhl = 'DiagnosticHint'}
 )
