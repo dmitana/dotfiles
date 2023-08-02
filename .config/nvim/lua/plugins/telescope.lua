@@ -58,6 +58,8 @@ telescope.setup {
         -- Remap previous/next selection
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-j>"] = actions.move_selection_next,
+        -- Remap sending to quickfixlist
+        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
       },
     },
   },
