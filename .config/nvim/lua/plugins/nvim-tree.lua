@@ -13,10 +13,10 @@ require'nvim-tree'.setup {
   diagnostics = {
     enable = true,
     icons = {
-      hint = "", -- Default is 
+      hint = "", -- Default is 
       info = "", -- Default is 
-      warning = "", -- Default is 
-      error = "", -- Default is 
+      warning = "", -- Default is 
+      error = "", -- Default is 
     }
   },
   -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
@@ -51,13 +51,6 @@ require'nvim-tree'.setup {
     width = 40,
     -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
     side = 'left',
-    mappings = {
-      -- custom only false will merge the list with the default mappings
-      -- if true, it will only use your list to set the mappings
-      custom_only = false,
-      -- list of mappings to set on the tree manually
-      list = {}
-    },
   },
   renderer = {
     -- Append a trailing slash to folder names
