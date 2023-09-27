@@ -50,12 +50,14 @@ $ dots config --local status.showUntrackedFiles no
 
 7. Install [powerline](https://github.com/powerline/powerline) for tmux (based on [this answer](https://askubuntu.com/questions/283908/how-can-i-install-and-use-powerline-plugin) and [doc](https://powerline.readthedocs.io/en/latest/overview.html)). Quick install (when fonts are already installed).
 ```bash
-$ pip install --user powerline-status
-```
-
-Or on Arch simply.
-```bash
+# Ach
 $ yay -S powerline powerline-fonts
+
+# Ubuntu
+$ sudo apt install powerline
+
+# Python
+$ pip install --user powerline-status
 ```
 
 8. Install [nvim](.config/nvim).

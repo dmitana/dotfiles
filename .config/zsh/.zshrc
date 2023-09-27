@@ -101,7 +101,7 @@ local ubuntu_fzf="$HOME/.fzf.zsh"
 # ===== Plugins =====
 # Source zplug (only one file will be sourced)
 local arch_zplug_init_file="/usr/share/zsh/scripts/zplug/init.zsh"
-local ubuntu_zplug_init_file="$HOME/.local/share/zplug/init.zsh"
+local ubuntu_zplug_init_file="/usr/share/zplug/init.zsh"
 [ -f "$arch_zplug_init_file" ] && source "$arch_zplug_init_file"
 [ -f "$ubuntu_zplug_init_file" ] && source "$ubuntu_zplug_init_file"
 
