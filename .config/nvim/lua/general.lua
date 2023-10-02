@@ -64,6 +64,9 @@ vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
 vim.opt.encoding = 'utf-8'
 
+-- Resize windows on display change
+vim.api.nvim_command('autocmd VimResized * wincmd =')
+
 -- Keybindings
 --
 -- Navigation in split windows
