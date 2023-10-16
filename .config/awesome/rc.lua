@@ -455,7 +455,7 @@ awful.keyboard.append_global_keybindings({
         {},
         "XF86AudioPlay",
         function () awful.util.spawn_with_shell(
-            "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+            "playerctl play-pause"
             )
         end,
         {description = "Play/Pause", group = "hotkeys"}
@@ -464,7 +464,7 @@ awful.keyboard.append_global_keybindings({
         {},
         "XF86AudioNext",
         function () awful.util.spawn_with_shell(
-            "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+            "playerctl next"
             )
         end,
         {description = "Next", group = "hotkeys"}
@@ -473,10 +473,19 @@ awful.keyboard.append_global_keybindings({
         {},
         "XF86AudioPrev",
         function () awful.util.spawn_with_shell(
-            "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+            "playerctl previous"
             )
         end,
         {description = "Previous", group = "hotkeys"}
+    ),
+    awful.key(
+        {},
+        "XF86AudioStop",
+        function () awful.util.spawn_with_shell(
+            "playerctl stop"
+            )
+        end,
+        {description = "Stop", group = "hotkeys"}
     ),
     awful.key(
         {},
