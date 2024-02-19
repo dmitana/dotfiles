@@ -739,7 +739,7 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 -- Autostart applications
-awful.spawn.with_shell("picom -b --experimental-backends --dbus --config ~/.config/picom/picom.conf")
+awful.spawn.with_shell("picom -b --dbus --config ~/.config/picom/picom.conf")
 awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("blueman-applet")
 awful.spawn.with_shell("xfce4-clipman")
