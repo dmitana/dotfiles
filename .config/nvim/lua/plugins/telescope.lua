@@ -96,4 +96,5 @@ vim.api.nvim_set_keymap('n', '<leader>fb', telescope_fn('buffers()'), { noremap 
 vim.api.nvim_set_keymap('n', '<leader>fh', telescope_fn('help_tags()'), { noremap = true, silent = false })
 vim.api.nvim_set_keymap('n', '<leader>gc', telescope_fn('git_commits()'), { noremap = true, silent = false })
 vim.api.nvim_set_keymap('n', '<leader>gb', telescope_fn('git_branches()'), { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<leader>gs', telescope_fn('git_status()'), { noremap = true, silent = false })
 vim.api.nvim_set_keymap('n', '<leader>tb', telescope_fn('builtin()'), { noremap = true, silent = false })
