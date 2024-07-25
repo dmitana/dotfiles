@@ -19,6 +19,7 @@ require('formatter').setup({
     javascript = { prettier },
     typescript = { prettier },
     typescriptreact = { prettier },
+    json = { prettier },
     python = { black },
   }
 })
