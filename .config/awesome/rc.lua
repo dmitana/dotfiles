@@ -61,7 +61,10 @@ email = "thunderbird"
 whatsapp = "whatsapp-nativefier"
 slack = "slack"
 pidgin = "pidgin"
+vmware_client = "GTK_THEME=Materia-light vmware-view"
 gui_file_manager = "thunar"
+rofi = "rofi -combi-modi window,drun,ssh -theme solarized -font \"hack 10\" -show combi -icon-theme \"Papirus\" -show-icons"
+rofi_calc = "rofi -show calc -modi calc -no-show-match -no-sort -theme solarized -font \"hack 10\""
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -295,8 +298,14 @@ awful.keyboard.append_global_keybindings({
               {description = "open an email client", group = "launcher"}),
     awful.key({ modkey,           }, "F8", function () awful.spawn(pidgin) end,
               {description = "open pidgin", group = "launcher"}),
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey,           }, "F9", function () awful.spawn.with_shell(vmware_client) end,
+              {description = "open VMWare Client", group = "launcher"}),
+    awful.key({ modkey },            "r",     function () awful.spawn.with_shell(rofi) end,
               {description = "run prompt", group = "launcher"}),
+    awful.key({ modkey },            "c",     function () awful.spawn.with_shell(rofi_calc) end,
+              {description = "run calculator", group = "launcher"}),
+    -- awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+    --           {description = "run prompt", group = "launcher"}),
     --awful.key({ modkey }, "p", function() menubar.show() end,
               --{description = "show the menubar", group = "launcher"}),
 })
@@ -723,6 +732,7 @@ ruled.notification.connect_signal('request::rules', function()
         properties = {
             screen           = awful.screen.preferred,
             implicit_timeout = 5,
+            position         = "top_middle",
         }
     }
 end)
@@ -737,6 +747,21 @@ end)
 client.connect_signal("mouse::enter", function(c)
     c:activate { context = "mouse_enter", raise = false }
 end)
+
+-- Split monitor vertically to two screens
+-- local geo = screen[1].geometry
+-- local left_width = 1800
+-- local right_width = geo.width - left_width
+-- screen[1]:fake_resize(geo.x, geo.y, left_width, geo.height)
+-- screen.fake_add(geo.x + left_width, geo.y, right_width, geo.height)
+
+-- Split monitor vertically to three screens
+-- local geo = screen[1].geometry
+-- local middle_width = 1400
+-- local side_width = (geo.width - middle_width) / 2
+-- screen[1]:fake_resize(geo.x + side_width, geo.y, middle_width, geo.height)
+-- screen.fake_add(geo.x, geo.y, side_width, geo.height)
+-- screen.fake_add(geo.x + side_width + middle_width, geo.y, side_width, geo.height)
 
 -- Autostart applications
 awful.spawn.with_shell("picom -b --dbus --config ~/.config/picom/picom.conf")
