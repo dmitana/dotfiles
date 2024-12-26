@@ -129,7 +129,10 @@ return require('packer').startup(function(use)
   use 'mfussenegger/nvim-dap' -- Debug Adapter Protocol client implementation for Neovim
   use 'mfussenegger/nvim-dap-python' -- An extension for nvim-dap, providing default configurations for python and methods to debug individual test methods or classes.
   use 'theHamsta/nvim-dap-virtual-text' -- Virtual text support for nvim-dap
-  use 'rcarriga/nvim-dap-ui' -- A UI for nvim-dap
+  use { -- A UI for nvim-dap
+    'rcarriga/nvim-dap-ui',
+    requires = 'nvimi-neotest/nvim-nio'
+  }
   use 'nvim-telescope/telescope-dap.nvim' -- Integration for nvim-dap with telescope.nvim
 
   -- Testing

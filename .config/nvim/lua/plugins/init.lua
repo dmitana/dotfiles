@@ -45,14 +45,16 @@ require('plugins.diffview')
 -- Spelling
 require('plugins.spelunker')
 
+-- TODO: Fix Debugging plugins
 -- Debugging
-require('plugins.nvim-dap')
-require('plugins.nvim-dap-virtual-text')
-require('plugins.nvim-dap-ui')
+-- require('plugins.nvim-dap')
+-- require('plugins.nvim-dap-virtual-text')
+-- require('plugins.nvim-dap-ui')
 
+-- TODO: Fix Testing plugins
 -- Testing
 -- require('plugins.vim-ultest')
-require('plugins.neotest')
+-- require('plugins.neotest')
 
 -- General tools
 require('plugins.nvim-colorizer')
