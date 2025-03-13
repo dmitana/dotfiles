@@ -1,5 +1,5 @@
 # Python neovim
-neovim
+pynvim
 # Pylsp requirements
 python-lsp-server
 python-lsp-black

@@ -1,0 +1,7 @@
+python-pynvim
+python-lsp-server
+python-lsp-black
+python-pyls-flake8
+python-pyls-isort
+python-debugpy
+python-doq
