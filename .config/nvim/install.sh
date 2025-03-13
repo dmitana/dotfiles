@@ -5,7 +5,7 @@ yay -S --noconfirm wget curl git ripgrep g++
 yay -S --noconfirm neovim
 
 # Install the Packer plugin manager
-yay -S --noconfirm packer
+git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # Install python3 if it doesn't exist
 if ! command -v python3 &> /dev/null
