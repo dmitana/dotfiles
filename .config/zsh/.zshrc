@@ -1,3 +1,6 @@
+# Turn off all beeps
+unsetopt BEEP
+
 # Enable colors
 autoload -U colors && colors
 
