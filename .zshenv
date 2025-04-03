@@ -26,5 +26,5 @@ fi
 # Enable the keyring for applications run through the terminal, such as SSH
 if [ -n "$DESKTOP_SESSION" ]; then
     eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 fi
