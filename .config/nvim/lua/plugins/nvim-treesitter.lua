@@ -38,10 +38,6 @@ require'nvim-treesitter.configs'.setup {
       }
     }
   },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
   -- TODO: This is just an example, update it
   textobjects = {
     select = {

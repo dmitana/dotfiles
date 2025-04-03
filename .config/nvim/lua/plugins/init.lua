@@ -19,7 +19,7 @@ require('plugins.vim-jsdoc')
 
 -- General coding support
 require('plugins.trouble')
-require('plugins.kommentary')
+require('plugins.comment')
 require('plugins.pear-tree')
 require('plugins.nvim-lightbulb')
 require('plugins.todo-comments')
