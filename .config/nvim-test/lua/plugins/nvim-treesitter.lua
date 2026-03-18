@@ -72,21 +72,22 @@ return {
       map_obj("ac", "@class.outer", "Select outer part of a class")
       map_obj("ic", "@class.inner", "Select inner part of a class")
 
+      -- TODO: Check and update
       -- 5. INCREMENTAL SELECTION REPLACEMENT
       -- The native incremental selection module was removed in `main`.
       -- This is the community-standard snippet to replace it using the <TAB> key.
-      _G.selected_nodes = {}
-      vim.keymap.set({ "n" }, "<tab>", function()
-        _G.selected_nodes = {}
-        local node = vim.treesitter.get_node()
-        if not node then return end
-        table.insert(_G.selected_nodes, node)
-
-        local start_row, start_col, end_row, end_col = node:range()
-        vim.fn.setpos("'<", { 0, start_row + 1, start_col + 1, 0 })
-        vim.fn.setpos("'>", { 0, end_row + 1, end_col, 0 })
-        vim.cmd("normal! gv")
-      end, { desc = "Init Treesitter Selection" })
+      -- _G.selected_nodes = {}
+      -- vim.keymap.set({ "n" }, "<tab>", function()
+      --   _G.selected_nodes = {}
+      --   local node = vim.treesitter.get_node()
+      --   if not node then return end
+      --   table.insert(_G.selected_nodes, node)
+      --
+      --   local start_row, start_col, end_row, end_col = node:range()
+      --   vim.fn.setpos("'<", { 0, start_row + 1, start_col + 1, 0 })
+      --   vim.fn.setpos("'>", { 0, end_row + 1, end_col, 0 })
+      --   vim.cmd("normal! gv")
+      -- end, { desc = "Init Treesitter Selection" })
 
       -- (For expanding selection, you can map another key to traverse the `node:parent()`)
     end,

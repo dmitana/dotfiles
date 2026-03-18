@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove Workspace Folder")
     map("<leader>wl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List Workspace Folders")
     map("<leader>D", vim.lsp.buf.type_definition, "Type Definition")
-    map("<leader>rn", vim.lsp.buf.rename, "Rename")
+    map("<leader>cr", vim.lsp.buf.rename, "Code Rename")
     map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
     map("gr", ts.lsp_references, "Goto References (Telescope)")
     map("gw", ts.lsp_document_symbols, "Document Symbols (Telescope)")
@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Previous Diagnostic")
     map("]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next Diagnostic")
     map("<leader>q", vim.diagnostic.setloclist, "Set Loclist")
-    map("<leader>f", function() vim.lsp.buf.format({ async = true }) end, "Format File")
+    map("<leader>cf", function() vim.lsp.buf.format({ async = true }) end, "Code Format")
 
     -- Enable Inlay Hints if supported
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
