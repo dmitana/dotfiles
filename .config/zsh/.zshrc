@@ -96,6 +96,8 @@ local aliasrc_file="$HOME/.config/shell/aliasrc"
 # Fzf key bindings and completion
 local fzf_key_bindings_file="/usr/share/fzf/key-bindings.zsh"
 local fzf_completion_file="/usr/share/fzf/completion.zsh"
+local ubuntu_fzf_key_bindings_file="/usr/share/doc/fzf/examples/key-bindings.zsh"
+local ubuntu_fzf_completion_file="/usr/share/doc/fzf/examples/completion.zsh"
 local ubuntu_fzf="$HOME/.fzf.zsh"
 [ -f "$fzf_key_bindings_file" ] && source "$fzf_key_bindings_file"
 [ -f "$fzf_completion_file" ] && source "$fzf_completion_file"
@@ -103,8 +105,10 @@ local ubuntu_fzf="$HOME/.fzf.zsh"
 
 # ===== Plugins =====
 # Source zplug (only one file will be sourced)
-local arch_zplug_init_file="/usr/share/zsh/scripts/zplug/init.zsh"
-local ubuntu_zplug_init_file="/usr/share/zplug/init.zsh"
+# TODO: Uncomment and remove next line when fixed in master branch
+# local arch_zplug_init_file="/usr/share/zsh/scripts/zplug/init.zsh"
+local arch_zplug_init_file="/home/denis/.zplug/init.zsh"
+local ubuntu_zplug_init_file="$HOME/.zplug/init.zsh"
 [ -f "$arch_zplug_init_file" ] && source "$arch_zplug_init_file"
 [ -f "$ubuntu_zplug_init_file" ] && source "$ubuntu_zplug_init_file"
 
