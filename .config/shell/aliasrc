@@ -1,5 +1,8 @@
 #!/bin/sh
 
+alias task="go-task"
+alias nvim-test="NVIM_APPNAME=nvim-test nvim"
+
 alias vimdiff="nvim -d"
 alias cht="cht.sh"
 
@@ -23,6 +26,19 @@ alias \
   las="ls -lat" \
   ll="ls -l" \
   lls="ls -lt"
+
+# tar.gz
+  # Create archive - tar -czvf archive-name.tar.gz directory-name/
+  # Verbose version
+  # List archive content
+  # Extract archive - tar -xzvf archive-name.tar.gz
+  # Verbose version
+alias \
+  targzc="tar -czf" \
+  targzcv="tar -czvf" \
+  targzl="tar -tzvf" \
+  untargz="tar -xzf" \
+  untargzv="tar -xzvf"
 
 # Git
 alias \
@@ -73,11 +89,11 @@ alias \
 
 # Docker compose
 alias \
-  dc="docker-compose" \
-  dcs="docker-compose start" \
-  dct="docker-compose stop" \
-  dcu="docker-compose up" \
-  dcd="docker-compose down"
+  dc="docker compose" \
+  dcs="docker compose start" \
+  dct="docker compose stop" \
+  dcu="docker compose up" \
+  dcd="docker compose down"
 
 # Quick access
 alias \
