@@ -22,6 +22,20 @@ local isort = function()
   }
 end
 
+local gofmt = function()
+  return {
+    exe = 'gofmt',
+    stdin = true,
+  }
+end
+
+local goimports = function()
+  return {
+    exe = 'goimports',
+    stdin = true,
+  }
+end
+
 require('formatter').setup({
   filetype = {
     javascript = { prettier },
@@ -29,5 +43,6 @@ require('formatter').setup({
     typescriptreact = { prettier },
     json = { prettier },
     python = { black, isort },
+    go = { gofmt, goimports },
   }
 })

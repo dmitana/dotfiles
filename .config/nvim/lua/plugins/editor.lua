@@ -69,5 +69,12 @@ return {
         desc = "Window Hydra Mode (which-key)",
       },
     },
+  },
+  -- markdown preview plugin for (neo)vim (preview markdown in browser)
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
   }
 }

@@ -1,88 +1,95 @@
-require'nvim-treesitter.configs'.setup {
-  -- Ensure that these language parsers are installed
-  ensure_installed = {
-    'python',
-    'json',
-    'lua',
-    'html',
-    'css',
-    'javascript',
-    'typescript',
-    'comment',
-  },
-
-  -- Modules
-  highlight = {
-    enable = true,
-    use_languagetree = true
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = 'gnn',
-      node_incremental = 'grn',
-      scope_incremental = 'grc',
-      node_decremental = 'grm',
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main", -- Explicitly target the new main branch
+    lazy = false,
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main", -- Textobjects also has a rewritten main branch
+      },
+      "andymass/vim-matchup",
     },
-  },
-  indent = { enable = true },
-  matchup = { enable = true },
-  refactor = {
-    highlight_definitions = { enable = true },
-    highlight_current_scope = { enable = false },
-    navigation = {
-      enable = true,
-      keymaps = {
-        goto_next_usage = 'gnu',
-        goto_previous_usage = 'gpu'
+    config = function()
+      require "nvim-treesitter".setup {
+        -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+        install_dir = vim.fn.stdpath("data") .. "/site"
       }
-    }
-  },
-  -- TODO: This is just an example, update it
-  textobjects = {
-    select = {
-      enable = true,
+      local ts = require("nvim-treesitter")
 
-      -- Automatically jump forward to textobj, similar to targets.vim
-      lookahead = true,
+      -- 1. PARSER MANAGEMENT (`ensure_installed` table is gone)
+      local parsers_to_install = {
+        "python", "json", "lua", "html", "css", "javascript", "typescript",
+        "c", "vim", "vimdoc", "query"
+      }
 
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        -- You can optionally set descriptions to the mappings (used in the desc parameter of
-        -- nvim_buf_set_keymap) which plugins like which-key display
-        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-      },
-      -- You can choose the select mode (default is charwise 'v')
+      -- Only install missing parsers to prevent startup spam/delays
+      local installed = ts.get_installed()
+      local missing = vim.tbl_filter(function(parser)
+        return not vim.tbl_contains(installed, parser)
+      end, parsers_to_install)
+
+      if #missing > 0 then
+        ts.install(missing)
+      end
+
+      -- 2. ENABLE CORE FEATURES VIA NEOVIM API (`highlight` and `indent` blocks are gone)
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("TreesitterMainConfig", { clear = true }),
+        callback = function(event)
+          -- Start syntax highlighting safely (fails gracefully if parser isn't installed)
+          pcall(vim.treesitter.start, event.buf)
+
+          -- Enable treesitter indentation
+          vim.bo[event.buf].indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+        end,
+      })
+
+      -- 3. FOLDING (Handled natively by Neovim 0.10+)
+      vim.opt.foldmethod = "expr"
+      vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
+      vim.opt.foldenable = false
+
+      -- 4. TEXTOBJECTS (No longer hooked into TS setup, configured separately)
+      require("nvim-treesitter-textobjects").setup({
+        select = {
+          lookahead = true,
+        }
+      })
+
+      -- Textobject keymaps configured manually (the modern recommended way for `main`)
+      local function map_obj(lhs, obj, desc)
+        vim.keymap.set({ "x", "o" }, lhs, function()
+          require("nvim-treesitter-textobjects.select").select_textobject(obj, "textobjects")
+        end, { desc = desc })
+      end
+
+      map_obj("af", "@function.outer", "Select outer part of a function")
+      map_obj("if", "@function.inner", "Select inner part of a function")
+      map_obj("ac", "@class.outer", "Select outer part of a class")
+      map_obj("ic", "@class.inner", "Select inner part of a class")
+
+      -- TODO: Check and update
+      -- 5. INCREMENTAL SELECTION REPLACEMENT
+      -- The native incremental selection module was removed in `main`.
+      -- This is the community-standard snippet to replace it using the <TAB> key.
+      -- _G.selected_nodes = {}
+      -- vim.keymap.set({ "n" }, "<tab>", function()
+      --   _G.selected_nodes = {}
+      --   local node = vim.treesitter.get_node()
+      --   if not node then return end
+      --   table.insert(_G.selected_nodes, node)
       --
-      -- Can also be a function which gets passed a table with the keys
-      -- * query_string: eg '@function.inner'
-      -- * method: eg 'v' or 'o'
-      -- and should return the mode ('v', 'V', or '<c-v>') or a table
-      -- mapping query_strings to modes.
-      selection_modes = {
-        ['@parameter.outer'] = 'v', -- charwise
-        ['@function.outer'] = 'V', -- linewise
-        ['@class.outer'] = '<c-v>', -- blockwise
-      },
-      -- If you set this to `true` (default is `false`) then any textobject is
-      -- extended to include preceding or succeeding whitespace. Succeeding
-      -- whitespace has priority in order to act similarly to eg the built-in
-      -- `ap`.
-      --
-      -- Can also be a function which gets passed a table with the keys
-      -- * query_string: eg '@function.inner'
-      -- * selection_mode: eg 'v'
-      -- and should return true of false
-      -- include_surrounding_whitespace = true,
-      include_surrounding_whitespace = false,
-    },
+      --   local start_row, start_col, end_row, end_col = node:range()
+      --   vim.fn.setpos("'<", { 0, start_row + 1, start_col + 1, 0 })
+      --   vim.fn.setpos("'>", { 0, end_row + 1, end_col, 0 })
+      --   vim.cmd("normal! gv")
+      -- end, { desc = "Init Treesitter Selection" })
+
+      -- (For expanding selection, you can map another key to traverse the `node:parent()`)
+    end,
   },
 }
-
--- Set folding
-vim.opt.foldenable = false
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'

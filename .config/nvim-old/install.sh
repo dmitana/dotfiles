@@ -36,6 +36,7 @@ yay -S $(cat ~/.config/nvim/requirements-dev-yay.txt)
 
 # Go (gopls)
 go install golang.org/x/tools/gopls@latest
+go install github.com/nametake/golangci-lint-langserver@latest
 
 # Eslint (JS, JS), JSON, HTML and CSS (SCSS, LESS)
 sudo npm i -g vscode-langservers-extracted
