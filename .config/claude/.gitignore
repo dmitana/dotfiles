@@ -1,0 +1,35 @@
+# Credentials
+.credentials.json
+credentials.json
+
+# Internal state
+.claude.json
+.claude.json.backup.*
+security_warnings_*.json
+stats-cache.json
+mcp-needs-auth-cache.json
+
+# Session data
+history.jsonl
+backups/
+cache/
+debug/
+file-history/
+paste-cache/
+session-env/
+shell-snapshots/
+
+# Agent and team state
+plans/
+plugins/
+tasks/
+teams/
+todos/
+
+# Telemetry
+statsig/
+telemetry/
+usage-data/
+
+# IDE integration
+ide/
