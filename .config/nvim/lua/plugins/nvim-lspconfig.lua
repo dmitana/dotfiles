@@ -64,6 +64,8 @@ return {
             }
           }
         },
+        -- GO lang
+        gopls = {},
         -- Webdev: HTML, CSS, TS, JS
         html = {},
         cssls = {},
