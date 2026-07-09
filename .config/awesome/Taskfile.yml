@@ -1,0 +1,118 @@
+version: '3'
+
+# Task runner for the AwesomeWM config.
+# Binary is `go-task` on Arch (package: go-task).
+#
+# Common flows:
+#   go-task check          # syntax-check the live config
+#   go-task reload         # check + restart the running WM in place
+#   go-task xephyr         # boot the live config inside a nested X server
+#   go-task test:sync      # copy live -> test/ (destroys uncommitted test work)
+#   go-task xephyr:test    # boot test/ inside Xephyr
+#   go-task promote        # copy test/ -> live (after check:test passes)
+
+vars:
+  CONFIG_DIR: '{{.TASKFILE_DIR}}'
+  TEST_DIR: '{{.TASKFILE_DIR}}/test'
+  DISPLAY_NUM: ':5'
+  SCREEN_SIZE: '1600x900'
+  # Files/dirs that are meta (docs, task runner) and must not be
+  # synced between live and test. Applied to both directions of rsync.
+  # Leading `/` anchors the pattern to the source root.
+  RSYNC_EXCLUDES: >-
+    --exclude=/test
+    --exclude=/Taskfile.yml
+    --exclude=/README.md
+    --exclude=/CLAUDE.md
+    --exclude=/.git
+  # diff(1) matches --exclude by basename, so no leading slash.
+  DIFF_EXCLUDES: >-
+    --exclude=test
+    --exclude=Taskfile.yml
+    --exclude=README.md
+    --exclude=CLAUDE.md
+    --exclude=.git
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - go-task --list
+
+  check:
+    desc: Syntax-check the live rc.lua
+    cmds:
+      - awesome -k -c {{.CONFIG_DIR}}/rc.lua
+
+  check:test:
+    desc: Syntax-check test/rc.lua
+    cmds:
+      - awesome -k -c {{.TEST_DIR}}/rc.lua
+
+  reload:
+    desc: Syntax-check, then restart the running AwesomeWM in place
+    deps: [check]
+    cmds:
+      - echo 'awesome.restart()' | awesome-client
+
+  test:sync:
+    desc: Overwrite test/ with a fresh copy of the live config
+    prompt: This will DELETE any uncommitted changes in test/. Continue?
+    cmds:
+      - rsync -a --delete {{.RSYNC_EXCLUDES}} {{.CONFIG_DIR}}/ {{.TEST_DIR}}/
+
+  test:diff:
+    desc: Show diff between live and test configs
+    cmds:
+      - diff -ruN {{.DIFF_EXCLUDES}} {{.CONFIG_DIR}} {{.TEST_DIR}} || true
+
+  promote:
+    desc: Copy test/ over live config (syntax-checks test/ first)
+    deps: [check:test]
+    prompt: This will overwrite the live config with test/. Continue?
+    cmds:
+      - rsync -a --delete {{.RSYNC_EXCLUDES}} {{.TEST_DIR}}/ {{.CONFIG_DIR}}/
+
+  xephyr:
+    desc: Launch a nested AwesomeWM using the LIVE config
+    deps: [check]
+    cmds:
+      - task: _xephyr:run
+        vars: {RC_FILE: '{{.CONFIG_DIR}}/rc.lua'}
+
+  xephyr:test:
+    desc: Launch a nested AwesomeWM using the TEST config
+    deps: [check:test]
+    cmds:
+      - task: _xephyr:run
+        vars: {RC_FILE: '{{.TEST_DIR}}/rc.lua'}
+
+  # Internal helper — starts Xephyr, runs awesome inside it,
+  # and guarantees Xephyr is killed on exit (normal, error, or Ctrl+C).
+  _xephyr:run:
+    internal: true
+    requires:
+      vars: [RC_FILE]
+    cmds:
+      - |
+        set -e
+        Xephyr {{.DISPLAY_NUM}} -ac -screen {{.SCREEN_SIZE}} -host-cursor -reset -terminate &
+        XEPHYR_PID=$!
+        trap 'kill $XEPHYR_PID 2>/dev/null; wait $XEPHYR_PID 2>/dev/null; true' EXIT INT TERM
+        # Wait until Xephyr accepts connections (or die if it never does).
+        for i in 1 2 3 4 5 6 7 8 9 10; do
+          if kill -0 $XEPHYR_PID 2>/dev/null && [ -e /tmp/.X11-unix/X{{.DISPLAY_NUM | trimPrefix ":"}} ]; then
+            break
+          fi
+          if ! kill -0 $XEPHYR_PID 2>/dev/null; then
+            echo "Xephyr exited before it was ready — see the error above." >&2
+            exit 1
+          fi
+          sleep 0.1
+        done
+        DISPLAY={{.DISPLAY_NUM}} awesome -c {{.RC_FILE}}
+
+  clean:
+    desc: Kill any stray Xephyr processes
+    cmds:
+      - pkill -f "Xephyr {{.DISPLAY_NUM}}" || true
