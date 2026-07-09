@@ -7,7 +7,7 @@ local xresources = require("beautiful.xresources")
 local rnotification = require("ruled.notification")
 local dpi = xresources.apply_dpi
 
-local lfs = require("lfs")
+local ok_lfs, lfs = pcall(require, "lfs")  -- lfs only powers random wallpaper; degrade gracefully if absent
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 local theme_dir = gfs.get_configuration_dir()..'/theme'
@@ -111,9 +111,11 @@ theme.wallpaper = theme_dir.."/wallpapers/death_star.jpg"
 -- Get random wallpaper
 local wallpapers_dir = theme_dir.."/wallpapers/"
 local wallpapers_files = {}
-for file in lfs.dir(wallpapers_dir) do
-    if file ~= "." and file ~= ".." then
-        table.insert(wallpapers_files, file)
+if ok_lfs then
+    for file in lfs.dir(wallpapers_dir) do
+        if file ~= "." and file ~= ".." then
+            table.insert(wallpapers_files, file)
+        end
     end
 end
 
