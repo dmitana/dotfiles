@@ -1,2 +1,33 @@
 #!/bin/sh
-xrandr --output eDP1 --mode 1920x1080 --scale 0.75x0.75 --pos 0x0 --rotate normal --output HDMI1 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output VIRTUAL1 --off
+
+# --- 1. RESET PHASE ---
+# Clear the existing scale and panning matrices. 
+# We use a large temporary framebuffer (5500x2000) so Xorg doesn't throw 
+# out-of-bounds errors while reverting your active monitors to their native sizes.
+xrandr --fb 5500x2000 \
+       --output eDP-1 --scale 1x1 --panning 0x0 \
+       --output DP-1 --scale 1x1 --panning 0x0 2>/dev/null \
+       --output HDMI-1-0 --scale 1x1 --panning 0x0 2>/dev/null
+
+# --- 2. LAYOUT PHASE ---
+# DP 3440x1440
+if xrandr | grep -q "^DP-1 connected"; then
+    xrandr --fb 5040x1440 \
+           --output eDP-1 --mode 3200x2000 --scale 0.5x0.5 --pos 0x0 --rotate normal \
+           --output DP-1 --primary --mode 3440x1440 --rate 75.05 --scale 1x1 --pos 1600x0 --rotate normal \
+           --output HDMI-1-0 --off
+
+# HDMI 1920x1080
+elif xrandr | grep -q "^HDMI-1-0 connected"; then
+    xrandr --fb 1920x2080 \
+           --output eDP-1 --mode 3200x2000 --scale 0.5x0.5 --pos 160x1080 --rotate normal \
+           --output HDMI-1-0 --primary --mode 1920x1080 --rate 60.00 --scale 1x1 --pos 0x0 --rotate normal \
+           --output DP-1 --off
+  
+# Standalone eDP-1
+else
+    xrandr --fb 1600x1000 \
+           --output eDP-1 --mode 3200x2000 --scale 0.5x0.5 --pos 0x0 --rotate normal \
+           --output DP-1 --off \
+           --output HDMI-1-0 --off
+fi
