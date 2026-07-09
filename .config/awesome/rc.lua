@@ -58,7 +58,7 @@ editor_cmd = terminal .. " -e " .. editor
 browser = "google-chrome-stable"
 firefox = "firefox"
 email = "thunderbird"
-whatsapp = "whatsapp-nativefier"
+whatsapp = "wasistlos"
 slack = "slack"
 pidgin = "pidgin"
 vmware_client = "GTK_THEME=Materia-light vmware-view"
@@ -511,7 +511,7 @@ awful.keyboard.append_global_keybindings({
     awful.key(
         {},
         "Print",
-        function () awful.spawn.with_shell("deepin-screenshot") end,
+        function () awful.spawn.with_shell("shutter -s") end,
         {description = "make screenshot", group = "hotkeys"}
     ),
     awful.key(
