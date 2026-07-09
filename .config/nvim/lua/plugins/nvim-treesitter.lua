@@ -22,7 +22,8 @@ return {
       -- 1. PARSER MANAGEMENT (`ensure_installed` table is gone)
       local parsers_to_install = {
         "python", "json", "lua", "html", "css", "javascript", "typescript",
-        "c", "vim", "vimdoc", "query"
+        "c", "vim", "vimdoc", "query",
+        "markdown", "markdown_inline", "latex", "typst", "yaml", "comment",
       }
 
       -- Only install missing parsers to prevent startup spam/delays
