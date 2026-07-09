@@ -7,6 +7,7 @@ local xresources = require("beautiful.xresources")
 local rnotification = require("ruled.notification")
 local dpi = xresources.apply_dpi
 
+local lfs = require("lfs")
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 local theme_dir = gfs.get_configuration_dir()..'/theme'
@@ -106,8 +107,24 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar
 theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
---theme.wallpaper = themes_path.."default/background.png"
 theme.wallpaper = theme_dir.."/wallpapers/death_star.jpg"
+-- Get random wallpaper
+local wallpapers_dir = theme_dir.."/wallpapers/"
+local wallpapers_files = {}
+for file in lfs.dir(wallpapers_dir) do
+    if file ~= "." and file ~= ".." then
+        table.insert(wallpapers_files, file)
+    end
+end
+
+local naughty = require("naughty")
+
+math.randomseed(os.time())
+if #wallpapers_files > 0 then
+    local choice = wallpapers_files[math.random(#wallpapers_files)]
+    choice = wallpapers_dir..choice
+    theme.wallpaper = choice
+end
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
