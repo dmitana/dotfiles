@@ -1,2 +1,7 @@
 Sxiv.background: black
 Sxiv.foreground: white
+
+/* Xft.dpi: 192 */
+# Cursor
+Xcursor.theme: Vimix-cursors
+Xcursor.size: 24
