@@ -1,14 +1,27 @@
+-- NOTE (2026-07): nvim-treesitter's repo was ARCHIVED on 2026-04-03 (read-only,
+-- frozen) after the 0.12 rewrite. We intentionally stay pinned to the final
+-- `main` commit (see lazy-lock.json) — it is frozen but fully functional on
+-- Nvim 0.12. Consequences:
+--   * `:Lazy update` / `:TSUpdate` will no longer pull new parser revisions.
+--   * Neovim provides the treesitter *engine* natively, but bundles only 7
+--     parsers (c, lua, markdown, markdown_inline, query, vim, vimdoc). Our other
+--     languages' parsers AND queries are installed under stdpath("data")/site
+--     (auto-loaded by Nvim), which is why highlighting keeps working.
+--   * `nvim-treesitter-textobjects` (below) is a SEPARATE repo and is NOT
+--     archived — it still receives updates.
+-- If ongoing parser updates become necessary, migrate parser management to a
+-- maintained successor (e.g. tree-sitter-manager.nvim) and keep native highlighting.
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "main", -- Explicitly target the new main branch
+    branch = "main", -- Explicitly target the new main branch (archived/frozen — see note above)
     lazy = false,
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        branch = "main", -- Textobjects also has a rewritten main branch
+        branch = "main", -- Textobjects also has a rewritten main branch (still maintained)
       },
       "andymass/vim-matchup",
     },
@@ -73,24 +86,10 @@ return {
       map_obj("ac", "@class.outer", "Select outer part of a class")
       map_obj("ic", "@class.inner", "Select inner part of a class")
 
-      -- TODO: Check and update
-      -- 5. INCREMENTAL SELECTION REPLACEMENT
-      -- The native incremental selection module was removed in `main`.
-      -- This is the community-standard snippet to replace it using the <TAB> key.
-      -- _G.selected_nodes = {}
-      -- vim.keymap.set({ "n" }, "<tab>", function()
-      --   _G.selected_nodes = {}
-      --   local node = vim.treesitter.get_node()
-      --   if not node then return end
-      --   table.insert(_G.selected_nodes, node)
-      --
-      --   local start_row, start_col, end_row, end_col = node:range()
-      --   vim.fn.setpos("'<", { 0, start_row + 1, start_col + 1, 0 })
-      --   vim.fn.setpos("'>", { 0, end_row + 1, end_col, 0 })
-      --   vim.cmd("normal! gv")
-      -- end, { desc = "Init Treesitter Selection" })
-
-      -- (For expanding selection, you can map another key to traverse the `node:parent()`)
+      -- 5. INCREMENTAL SELECTION — provided natively by Nvim 0.12, no config needed:
+      --    an / in : grow / shrink selection to the node outwards / inwards
+      --    ]n / [n : select next / previous sibling node
+      --    ]N / [N : expand to sibling node
     end,
   },
 }
