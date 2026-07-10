@@ -11,9 +11,16 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local watch = require("awful.widget.watch")
+local gfs = require("gears.filesystem")
 
-local GET_SPOTIFY_STATUS_CMD = 'sp status'
-local GET_CURRENT_SONG_CMD = 'sp current-oneline'
+-- Invoke the bundled `sp` script by absolute path so the widget does not
+-- depend on `sp` being installed on $PATH. Derived from the running config
+-- dir (has a trailing slash), so it resolves correctly in both the live
+-- config and the test/ copy.
+local SP = gfs.get_configuration_dir() .. 'widgets/spotify/sp'
+
+local GET_SPOTIFY_STATUS_CMD = SP .. ' status'
+local GET_CURRENT_SONG_CMD = SP .. ' current-oneline'
 
 local spotify_widget = {}
 
@@ -69,11 +76,11 @@ local function worker(args)
     --  - scroll down - play previous song
     spotify_widget:connect_signal("button::press", function(_, _, _, button)
         if (button == 1) then
-            awful.spawn("sp play", false)      -- left click
+            awful.spawn(SP .. " play", false)      -- left click
         elseif (button == 4) then
-            awful.spawn("sp next", false)  -- scroll up
+            awful.spawn(SP .. " next", false)  -- scroll up
         elseif (button == 5) then
-            awful.spawn("sp prev", false)  -- scroll down
+            awful.spawn(SP .. " prev", false)  -- scroll down
         end
         awful.spawn.easy_async(GET_SPOTIFY_STATUS_CMD, function(stdout, stderr, exitreason, exitcode)
             update_widget_icon(spotify_widget, stdout, stderr, exitreason, exitcode)
