@@ -93,9 +93,14 @@ tasks:
     internal: true
     requires:
       vars: [RC_FILE]
+    # NB: this block is fed to `bash`, NOT go-task's built-in shell
+    # (mvdan.cc/sh). go-task's shell rejects `trap ... INT TERM`
+    # ("invalid signal specification"), and with `set -e` that aborts the
+    # script before awesome ever starts — you'd get a black Xephyr window
+    # and no window manager. Real bash handles the trap correctly.
     cmds:
       - |
-        set -e
+        bash -eu <<'SH'
         Xephyr {{.DISPLAY_NUM}} -ac -screen {{.SCREEN_SIZE}} -host-cursor -reset -terminate &
         XEPHYR_PID=$!
         trap 'kill $XEPHYR_PID 2>/dev/null; wait $XEPHYR_PID 2>/dev/null; true' EXIT INT TERM
@@ -111,6 +116,7 @@ tasks:
           sleep 0.1
         done
         DISPLAY={{.DISPLAY_NUM}} awesome -c {{.RC_FILE}}
+        SH
 
   clean:
     desc: Kill any stray Xephyr processes
