@@ -1,3 +1,31 @@
+-- Ruff and pylsp lint the same rules; run only one. pylsp steps aside when the
+-- project uses ruff, and stays as the flake8 fallback otherwise.
+local function project_uses_ruff(root)
+  if not root then return false end
+  if vim.uv.fs_stat(root .. "/ruff.toml") or vim.uv.fs_stat(root .. "/.ruff.toml") then
+    return true
+  end
+  local pyproject = root .. "/pyproject.toml"
+  if vim.uv.fs_stat(pyproject) then
+    for line in io.lines(pyproject) do
+      if line:match("^%s*%[tool%.ruff") then -- [tool.ruff], [tool.ruff.lint], ...
+        return true
+      end
+    end
+  end
+  return false
+end
+
+local function pylsp_root_dir(bufnr, on_dir)
+  local root = vim.fs.root(bufnr, {
+    "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git",
+  }) or vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr))
+  if project_uses_ruff(root) then
+    return -- ruff handles linting; do not start pylsp
+  end
+  on_dir(root)
+end
+
 return {
   -- nvim-lspconfig
   {
@@ -15,6 +43,7 @@ return {
           }
         },
         pylsp = {
+          root_dir = pylsp_root_dir,
           settings = {
             pylsp = {
               plugins = {
