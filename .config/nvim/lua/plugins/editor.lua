@@ -150,4 +150,56 @@ return {
     --   })
     -- end,
   },
+  -- Render real images (png/jpg/gif/webp/pdf) in the buffer via the kitty graphics protocol
+  {
+    "3rd/image.nvim",
+    -- hijack_file_patterns keys off BufWinEnter/WinNew/TabEnter, which for `nvim shot.png`
+    -- fire before VeryLazy. Anything lazier than this silently breaks standalone image files.
+    lazy = false,
+    -- The default build step installs the `magick` luarock; magick_cli needs only /usr/bin/magick.
+    build = false,
+    opts = {
+      backend = "kitty",
+      processor = "magick_cli", -- no luarocks/hererocks on this machine
+      integrations = {
+        markdown = {
+          enabled = true,
+          clear_in_insert_mode = false,
+          download_remote_images = true,
+          only_render_image_at_cursor = false,
+          floating_windows = false,
+          filetypes = { "markdown" }, -- upstream also lists vimwiki; unused here
+        },
+        -- No norg/typst/asciidoc/rst documents in this setup, and html/css are off upstream too.
+        neorg = { enabled = false },
+        typst = { enabled = false },
+        asciidoc = { enabled = false },
+        rst = { enabled = false },
+        html = { enabled = false },
+        css = { enabled = false },
+      },
+      max_height_window_percentage = 50,
+      -- Clear images that a float would otherwise be drawn *under* (terminal graphics sit on
+      -- top of nvim's text). The ft_ignore list is the inverse: floats listed here are allowed
+      -- to overlap without triggering a clear.
+      window_overlap_clear_enabled = true,
+      window_overlap_clear_ft_ignore = {
+        -- upstream defaults, restated because the list is replaced wholesale, not merged
+        "cmp_menu",
+        "cmp_docs",
+        "snacks_notif",
+        "scrollview",
+        "scrollview_sign",
+        -- this config uses blink.cmp, so these are the equivalents of cmp_menu/cmp_docs above
+        "blink-cmp-menu",
+        "blink-cmp-documentation",
+      },
+      -- nvim losing focus is not the same as its pane being hidden: sidekick.nvim opens a tmux
+      -- pane next to nvim, and clearing images every time that pane is focused is just flicker.
+      -- Hidden-window handling is what tmux_show_only_in_active_window is for.
+      editor_only_render_when_focused = false,
+      tmux_show_only_in_active_window = true,
+      hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" },
+    },
+  },
 }

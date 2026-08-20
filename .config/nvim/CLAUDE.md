@@ -37,6 +37,29 @@ If you're adding treesitter functionality, verify examples target the main branc
 
 `after/ftplugin/<ft>.lua` overrides buffer-local options per filetype (tab width, `expandtab`, `colorcolumn`, `fileformat`). This is the right place for language-specific editor settings — do not put them in `config/general.lua`. Python uses 4-space soft tabs with `colorcolumn = {"73", "79"}`; Lua uses 2-space.
 
+## Images (image.nvim)
+
+`3rd/image.nvim` lives in `lua/plugins/editor.lua` and is the one plugin here coupled to external
+system state rather than just Lua. Three constraints are load-bearing and easy to "clean up" by
+mistake:
+
+- **`processor = "magick_cli"` with `build = false`.** This machine has ImageMagick (`/usr/bin/magick`)
+  but no luarocks. The upstream-default `magick_rock` processor would pull in a luarocks/hererocks
+  toolchain; don't switch to it, and don't restore the default `build` step.
+- **`lazy = false` is required.** File hijacking (`nvim shot.png`) hangs off `BufWinEnter`/`WinNew`/
+  `TabEnter`, which fire before `VeryLazy`. Lazy-loading it on `ft = "markdown"` or an event breaks
+  standalone image files silently — markdown still works, so the regression is easy to miss.
+- **tmux needs `set -gq allow-passthrough on`** (in `~/.tmux.conf`, alongside `visual-activity off`
+  and the pre-existing `focus-events on`). Without it the kitty graphics protocol is swallowed by
+  tmux and nothing renders.
+
+`markview.nvim` also decorates markdown image links (it substitutes a filetype icon for
+`![alt](path)`). The two coexist, but if the icon and the rendered image read as redundant, turn
+off markview's side only via `preview.markdown_inline.images.enable = false` — do not disable
+image.nvim's markdown integration.
+
+Fallback if kitty-through-tmux misbehaves: `ueberzugpp` is installed, so `backend = "ueberzug"` works.
+
 ## Completion
 
 `blink.cmp` is the completion engine. Legacy `nvim-cmp` sources (e.g. `cmp-calc`) are pulled in through `blink.compat` — see the `providers.calc` entry in `lua/plugins/completion.lua` for the pattern (`module = "blink.compat.source"`). Use this shim rather than searching for a native blink source when one doesn't exist.
