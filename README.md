@@ -4,10 +4,11 @@
 * [Installed Arch Linux](https://github.com/dmitana/dotfiles-test/wiki/Arch-Linux-Setup) 
 
 ## Installation
-1. Add `.dots` directory to the `.gitignore` file.
+1. Add the `.dots` directory and the Claude Code config directory to the `.gitignore` file.
 ```bash
-$ echo ".dots" >> .gitignore
+$ printf '%s\n' '.dots' '.config/claude/' >> .gitignore
 ```
+`.config/claude` is ignored here because it is tracked by a separate **private** repo — see step 9.
 
 2. Clone the repo.
 ```bash
@@ -61,6 +62,18 @@ $ pip install --user powerline-status
 ```
 
 8. Install [nvim](.config/nvim).
+
+9. Install the private [Claude Code](https://claude.com/claude-code) configuration. It lives in a
+separate **private** repo (`dmitana/dotfiles-claude`) because it holds personal preferences and
+client-specific skills. `$CLAUDE_CONFIG_DIR` is already set to `~/.config/claude` by
+[`.config/zsh/.zshrc`](.config/zsh/.zshrc), so the config lands where Claude Code looks for it.
+```bash
+$ dots-claude-install
+```
+The script is idempotent — re-run it any time to pull updates. It handles a fresh machine, a
+directory where Claude Code has already written state, and an existing clone. If you don't have
+access to the private repo it prints a warning and exits successfully, so this repo stays usable
+by anyone.
 
 ### Optional
 1. Use the predefined configurations for `X server`, `Udev rules` and `SDDM`.

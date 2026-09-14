@@ -1,0 +1,53 @@
+#!/bin/sh
+# Install/update the private Claude Code configuration (dmitana/dotfiles-claude)
+# into $CLAUDE_CONFIG_DIR. Safe to re-run. Soft-fails without repo access, so the
+# public dotfiles repo stays usable by anyone.
+set -eu
+
+REPO="${DOTS_CLAUDE_REPO:-git@github.com:dmitana/dotfiles-claude.git}"
+DIR="${CLAUDE_CONFIG_DIR:-$HOME/.config/claude}"
+
+activate_hooks() { git -C "$DIR" config core.hooksPath .githooks; }
+
+if [ -d "$DIR/.git" ]; then
+    echo "==> Updating $DIR"
+    git -C "$DIR" pull --ff-only
+    activate_hooks
+    exit 0
+fi
+
+if [ ! -e "$DIR" ] || [ -z "$(ls -A "$DIR" 2>/dev/null)" ]; then
+    echo "==> Cloning into $DIR"
+    git clone "$REPO" "$DIR" || {
+        echo "!! Clone failed (private repo - need access as dmitana). Skipping." >&2
+        exit 0
+    }
+    activate_hooks
+    exit 0
+fi
+
+echo "==> $DIR exists with content; adopting it into the repo"
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+git clone --no-checkout "$REPO" "$tmp/repo" || {
+    echo "!! Clone failed (private repo - need access as dmitana). Skipping." >&2
+    exit 0
+}
+mv "$tmp/repo/.git" "$DIR/.git"
+
+# `clone --no-checkout` leaves an EMPTY index. Rebuild it from HEAD without
+# touching the working tree, so pre-existing local files are never clobbered.
+git -C "$DIR" reset -q --mixed HEAD
+
+# Restore only the files that are missing locally. Files that exist but differ
+# are left alone and reported below - overwriting them would lose local edits.
+git -C "$DIR" ls-files -d -z | xargs -0 -r git -C "$DIR" checkout --
+
+activate_hooks
+
+modified=$(git -C "$DIR" diff --name-only)
+if [ -n "$modified" ]; then
+    echo "!! These local files differ from the repo - review before committing:" >&2
+    printf '%s\n' "$modified" >&2
+fi
+echo "==> Done. $DIR is now tracked by $REPO"
