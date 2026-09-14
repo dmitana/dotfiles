@@ -1,1 +1,6 @@
 .cfg
+.dots
+
+# Claude Code config lives in a separate private repo (dmitana/dotfiles-claude).
+# Install it with: dots-claude-install
+.config/claude/
