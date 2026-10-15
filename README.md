@@ -4,11 +4,11 @@
 * [Installed Arch Linux](https://github.com/dmitana/dotfiles-test/wiki/Arch-Linux-Setup) 
 
 ## Installation
-1. Add the `.dots` directory and the Claude Code config directory to the `.gitignore` file.
+1. Add the `.dots` directory and the private config directories to the `.gitignore` file.
 ```bash
-$ printf '%s\n' '.dots' '.config/claude/' >> .gitignore
+$ printf '%s\n' '.dots' '.config/claude/' '.config/awesome/' '.config/awesome-worktrees/' >> .gitignore
 ```
-`.config/claude` is ignored here because it is tracked by a separate **private** repo — see step 9.
+`.config/claude` and `.config/awesome` are ignored here because each is tracked by a separate **private** repo — see steps 9 and 10.
 
 2. Clone the repo.
 ```bash
@@ -74,6 +74,16 @@ The script is idempotent — re-run it any time to pull updates. It handles a fr
 directory where Claude Code has already written state, and an existing clone. If you don't have
 access to the private repo it prints a warning and exits successfully, so this repo stays usable
 by anyone.
+
+10. Install the private [AwesomeWM](https://awesomewm.org/) configuration. It lives in a separate
+**private** repo (`dmitana/dotfiles-awesome`) so it can use a normal git workflow (branches,
+worktrees, hooks) that a bare `$HOME` repo cannot offer. Run this before the *Optional* section —
+the SDDM step copies wallpapers from `~/.config/awesome/theme/wallpapers/`.
+```bash
+$ dots-awesome-install
+```
+Same behaviour as `dots-claude-install`: idempotent, adopts an existing directory, and soft-fails
+without access to the private repo. Runtime dependencies are listed in the repo's README.
 
 ### Optional
 1. Use the predefined configurations for `X server`, `Udev rules` and `SDDM`.

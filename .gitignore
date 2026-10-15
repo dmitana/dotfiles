@@ -4,3 +4,8 @@
 # Claude Code config lives in a separate private repo (dmitana/dotfiles-claude).
 # Install it with: dots-claude-install
 .config/claude/
+
+# AwesomeWM config lives in a separate private repo (dmitana/dotfiles-awesome).
+# Install it with: dots-awesome-install
+.config/awesome/
+.config/awesome-worktrees/
