@@ -85,6 +85,15 @@ $ dots-awesome-install
 Same behaviour as `dots-claude-install`: idempotent, adopts an existing directory, and soft-fails
 without access to the private repo. Runtime dependencies are listed in the repo's README.
 
+The look of [picom](https://github.com/yshui/picom) (blur, shadows, corners, opacity rules,
+window types, fading) lives in the AwesomeWM repo as well: [`.config/picom/picom.conf`](.config/picom/picom.conf)
+keeps only the machine settings (backend, vsync, ...) and includes `rice.conf`, a symlink to the
+AwesomeWM repo's `picom/rice.conf`. picom refuses to start while that file is missing, so create
+the link right after the install:
+```bash
+$ cd ~/.config/awesome && go-task picom:link
+```
+
 ### Optional
 1. Use the predefined configurations for `X server`, `Udev rules` and `SDDM`.
 ```bash
