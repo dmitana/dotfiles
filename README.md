@@ -106,8 +106,8 @@ $ sudo cp ~/etc/udev/10-ambilight.rules /etc/udev/rules.d/10-ambilight.rules
 $ sudo ln -s ~/etc/udev/99-udisks2.rules /etc/udev/rules.d/99-udisks2.rules
 $ sudo ln -s ~/etc/tmpfiles/media.conf /etc/tmpfiles.d/media.conf # set mount directory to the /media/$USER instead of /run/media/$USER
 
-# TLP battery profile (see the wiki, "Power management")
-$ sudo ln -s ~/etc/tlp/50-battery.conf /etc/tlp.d/50-battery.conf
+# TLP battery profile (see the wiki, "Power management"); copied, tlp.service cannot read /home
+$ sudo install -m644 ~/etc/tlp/50-battery.conf /etc/tlp.d/50-battery.conf
 
 # SDDM configuration
 $ sudo mkdir /etc/sddm.conf.d
