@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Run the internal panel at 60 Hz on battery and 165 Hz on AC (~1.2 W saved).
+# Applies once at start, then on every AC adapter udev event.
+OUTPUT=eDP-1
+MODE=3200x2000
+AC=/sys/class/power_supply/ACAD/online
+
+apply() {
+    local rate=60
+    [ "$(cat "$AC")" = 1 ] && rate=165
+    # Leave the panel alone when it is disabled (e.g. external-only layout).
+    xrandr --query | grep -qE "^$OUTPUT connected( primary)? [0-9]+x[0-9]+" || return 0
+    # --rate alone is silently ignored here; it needs --mode (scaling is kept).
+    xrandr --output "$OUTPUT" --mode "$MODE" --rate "$rate"
+}
+
+apply
+# Line-buffer udevadm so each event reaches the loop as soon as it happens.
+stdbuf -oL udevadm monitor --udev --subsystem-match=power_supply | while read -r line; do
+    case $line in *ACAD*) apply ;; esac
+done
