@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Average battery discharge power over N seconds (default 60). Run on battery.
+set -eu
+BAT=/sys/class/power_supply/BAT1
+SECS=${1:-60}
+
+[ "$(cat $BAT/status)" = Discharging ] || { echo "Not on battery." >&2; exit 1; }
+
+sum=0 n=0 end=$((SECONDS + SECS))
+while [ $SECONDS -lt $end ]; do
+    sum=$((sum + $(cat $BAT/power_now))); n=$((n + 1)); sleep 2
+done
+awk -v s="$sum" -v n="$n" -v e="$(cat $BAT/energy_now)" \
+    'BEGIN { w = s/n/1e6; printf "%.1f W  (%.1f Wh left → %.1f h)\n", w, e/1e6, e/1e6/w }'
